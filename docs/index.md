@@ -18,14 +18,20 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Code test
 
-```python
+Some Python code
+
+
+``` py title="Some Python test code" linenums="1"
 test = True
 if test:
     print('Test ok')
 ```
 
-```javascript
+Some JS
+
+
+``` js title="some-code.js"
 test = true;
 if (test == true):
-    console.log('Test ok')
+    console.log('Test ok');
 ```
