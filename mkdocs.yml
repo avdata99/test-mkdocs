@@ -20,6 +20,8 @@ nav:
     - Issue tracker: https://github.com/avdata99/test-mkdocs/issues
 
 # theme: readthedocs
+theme: mkdocs
+
 plugins:
     - search:
         indexing: 'full'
