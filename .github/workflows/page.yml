@@ -21,6 +21,6 @@ jobs:
           # CUSTOM_DOMAIN: optionaldomain.com
           CONFIG_FILE: mkdocs.yml
           # The EXTRA_PACKAGES variable will be passed to the apk add command of Alpine Linux before running pip install
-          EXTRA_PACKAGES: build-base
+          EXTRA_PACKAGES: build-base libffi-dev
           # GITHUB_DOMAIN: github.myenterprise.com
           REQUIREMENTS: requirements.txt
