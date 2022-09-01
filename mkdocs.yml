@@ -1,1 +1,50 @@
-site_name: My site name
+# mkdocs config https://www.mkdocs.org/user-guide/configuration/#configuration
+
+site_name: !ENV [SITE_NAME, 'My site name']
+site_url: https://avdata99.github.io/test-mkdocs/
+site_description: |
+  This is the site description
+  (a test version)
+site_author: Andres andres@data99.com.ar
+copyright: Creative commons BY-SA. No rigths reserved @avdata99
+
+repo_url: https://github.com/avdata99/test-mkdocs
+edit_uri: edit/main/docs
+
+nav:
+    - Home: index.md
+    - About: 
+        - General: about/about.md
+        - License: about/license.md
+    - Test page: test-page.md
+    - Issue tracker: https://github.com/avdata99/test-mkdocs/issues
+
+# theme: readthedocs
+plugins:
+    - search:
+        indexing: 'full'
+        lang:
+            - en
+            - es
+#    - your_other_plugin:
+#        option1: value
+#        option2: other value
+
+extra_css:
+    - css/custom.css
+
+extra_javascript:
+    - js/app.js
+
+# extra_templates: []
+
+# extra: A set of key-value pairs, where the values can be any valid YAML 
+# construct, that will be passed to the template.
+extra:
+    version: 0.1.5
+
+# markdown_extensions:
+#    - smarty
+#     - toc:
+#         permalink: True
+
