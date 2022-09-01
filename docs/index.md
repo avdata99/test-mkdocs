@@ -15,3 +15,17 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+## Code test
+
+```python
+test = True
+if test:
+    print('Test ok')
+```
+
+```javascript
+test = true;
+if (test == true):
+    console.log('Test ok')
+```
