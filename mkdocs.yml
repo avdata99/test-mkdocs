@@ -21,17 +21,51 @@ nav:
 
 # theme: readthedocs
 theme: material
-
+    
 plugins:
     - search:
         indexing: 'full'
         lang:
             - en
             - es
-#    - your_other_plugin:
-#        option1: value
-#        option2: other value
-
+    # - mkpdfs:
+    #     company: OKFN
+    #     author: Some OKFN member <some@okfn.org>
+    - with-pdf:
+        author: Some OKFN member <some@okfn.org>
+        copyright: OKFN CC BY-SA
+        cover: false
+        back_cover: true
+        cover_title: Cover title
+        cover_subtitle: Cover subtitle
+        # custom_template_path: TEMPLATES PATH
+        toc_title: Table of contents
+        heading_shift: false
+        toc_level: 3
+        ordered_chapter_level: 2
+        #excludes_children:
+        #    - 'release-notes/:upgrading'
+        #    - 'release-notes/:changelog'
+        #
+        #exclude_pages:
+        #    - 'bugs/'
+        #    - 'appendix/contribute/'
+        #convert_iframe:
+        #    - src: IFRAME SRC
+        #      img: POSTER IMAGE URL
+        #      text: ALTERNATE TEXT
+        #    - src: ...
+        #two_columns_level: 3
+        #
+        #render_js: true
+        #headless_chrome_path: headless-chromium
+        #
+        output_path: pdf/doc.pdf
+        #enabled_if_env: ENABLE_PDF_EXPORT
+        #
+        #debug_html: true
+        show_anchors: true
+        verbose: true
 extra_css:
     - css/custom.css
 

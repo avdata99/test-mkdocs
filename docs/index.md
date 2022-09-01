@@ -1,4 +1,6 @@
-# Welcome to MkDocs
+# Welcome to test MkDocs
+
+A PDF version of this document is available [here](pdf/doc.pdf).
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
