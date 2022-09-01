@@ -20,7 +20,7 @@ nav:
     - Issue tracker: https://github.com/avdata99/test-mkdocs/issues
 
 # theme: readthedocs
-theme: mkdocs
+theme: material
 
 plugins:
     - search:
@@ -36,6 +36,7 @@ extra_css:
     - css/custom.css
 
 extra_javascript:
+    - https://code.jquery.com/jquery-3.5.1.min.js
     - js/app.js
 
 # extra_templates: []
