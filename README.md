@@ -16,3 +16,4 @@ The `docs` folder include markdown files that will be built as a html site and a
 It's also possible to include static files.  
 The `mkdocs.yml` file allows you to define all the site and PDF settings.  
 The `pdf-template` folder include the cover and back-cover html files that will be used only in the PDF version. It's also posible to define custom CSS style for the PDF version with the `styles.scss` file.  
+Translations are [availabe](https://www.mkdocs.org/dev-guide/translations/) for mkdocs.  

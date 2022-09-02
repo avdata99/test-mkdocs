@@ -12,16 +12,33 @@ repo_url: https://github.com/avdata99/test-mkdocs
 edit_uri: edit/main/docs
 
 nav:
-    - Home: index.md
+    - Home: en/index.md
     - About: 
-        - General: about/about.md
-        - License: about/license.md
-    - Test page: test-page.md
+        - General: en/about/general.md
+        - License: en/about/license.md
+    - Test page: en/test-page.md
     - Issue tracker: https://github.com/avdata99/test-mkdocs/issues
 
+# How to include multi lang navs?
+# https://github.com/squidfunk/mkdocs-material/discussions/2346
+# nav:
+#     - Inicio: index.md
+#     - Acerca de: 
+#         - General: about/general.md
+#         - Licencia: about/license.md
+#     - Pagina de prubas: test-page.md
+#     - Reportar errores: https://github.com/avdata99/test-mkdocs/issues
+
 # theme: readthedocs
-theme: material
-    
+theme: 
+    name: material
+    language: en
+    logo: https://okfn.org/assets/img/OKF-logo-white-background.png
+    favicon: https://okfn.org/assets/favicon.ico
+    palette:
+      scheme: default
+      primary: teal
+
 plugins:
     - search:
         indexing: 'full'
@@ -83,6 +100,13 @@ extra:
     version: 0.1.5
     okfn_url: https://okfn.org
     scoda_url: https://schoolofdata.org
+    alternate:
+        - name: English
+          link: /en/ 
+          lang: en
+        - name: Español
+          link: /es/
+          lang: es
 
 markdown_extensions:
   - pymdownx.highlight:
