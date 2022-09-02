@@ -34,11 +34,13 @@ plugins:
     - with-pdf:
         author: Some OKFN member <some@okfn.org>
         copyright: OKFN CC BY-SA
-        cover: false
+        cover: true
         back_cover: true
         cover_title: Cover title
         cover_subtitle: Cover subtitle
-        # custom_template_path: TEMPLATES PATH
+        cover_logo: https://okfn.org/assets/img/OKF-logo-white-background.png
+        # custom path for cover.html and/or style.css
+        custom_template_path: pdf-template
         toc_title: Table of contents
         heading_shift: false
         toc_level: 3
@@ -79,6 +81,8 @@ extra_javascript:
 # construct, that will be passed to the template.
 extra:
     version: 0.1.5
+    okfn_url: https://okfn.org
+    scoda_url: https://schoolofdata.org
 
 markdown_extensions:
   - pymdownx.highlight:

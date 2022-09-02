@@ -1,0 +1,13 @@
+{%- set target_url = site_url or repo_url -%}
+
+<article id="doc-back_cover">
+    <div>
+        <p>
+            This is a <a href="{{ okfn_url }}">OKFN</a> document
+            produced by the <a href="{{ scoda_url }}">School of data</a> team.
+        </p>
+
+        {% if target_url is defined -%}<a href="{{ target_url }}">{{ target_url }}</a>{%- endif %}
+    </div>
+
+</article>
