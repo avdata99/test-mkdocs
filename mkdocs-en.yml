@@ -6,28 +6,21 @@ site_description: |
   This is the site description
   (a test version)
 site_author: Andres andres@data99.com.ar
+site_dir: site
+use_directory_urls: false
+
 copyright: Creative commons BY-SA. No rigths reserved @avdata99
 
 repo_url: https://github.com/avdata99/test-mkdocs
 edit_uri: edit/main/docs
 
 nav:
-    - Home: en/index.md
+    - Home: index.md
     - About: 
-        - General: en/about/general.md
-        - License: en/about/license.md
-    - Test page: en/test-page.md
+        - General: about/general.md
+        - License: about/license.md
+    - Test page: test-page.md
     - Issue tracker: https://github.com/avdata99/test-mkdocs/issues
-
-# How to include multi lang navs?
-# https://github.com/squidfunk/mkdocs-material/discussions/2346
-# nav:
-#     - Inicio: index.md
-#     - Acerca de: 
-#         - General: about/general.md
-#         - Licencia: about/license.md
-#     - Pagina de prubas: test-page.md
-#     - Reportar errores: https://github.com/avdata99/test-mkdocs/issues
 
 # theme: readthedocs
 theme: 
@@ -42,9 +35,8 @@ theme:
 plugins:
     - search:
         indexing: 'full'
-        lang:
-            - en
-            - es
+        lang: en
+
     # - mkpdfs:
     #     company: OKFN
     #     author: Some OKFN member <some@okfn.org>
@@ -102,10 +94,10 @@ extra:
     scoda_url: https://schoolofdata.org
     alternate:
         - name: English
-          link: /en/ 
+          link: /
           lang: en
         - name: Español
-          link: /es/
+          link: /es/index-es.html
           lang: es
 
 markdown_extensions:

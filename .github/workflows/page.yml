@@ -12,6 +12,9 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
+      # It will require a custom deploy
+      # - name: Deploy multi language
+      #   run: mkdocs build -f mkdocs-en.yml && mkdocs build -f mkdocs-es.yml
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         # mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
