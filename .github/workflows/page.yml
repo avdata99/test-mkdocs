@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG_FILES: mkdocs-en.yml mkdocs-es.yml
           # EXTRA_PACKAGES is for the apk add command of Alpine Linux before running pip install
-          EXTRA_PACKAGES: | 
+          EXTRA_PACKAGES: |
             build-base libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc
             openssl-dev curl jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev
             tiff-dev tk-dev tcl-dev py3-pip py3-pillow py3-cffi py3-brotli
