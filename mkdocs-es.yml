@@ -97,7 +97,7 @@ extra:
           link: /
           lang: en
         - name: Español
-          link: /es/index-es.html
+          link: /test-mkdocs/es/index-es.html  # TODO
           lang: es
 
 markdown_extensions:

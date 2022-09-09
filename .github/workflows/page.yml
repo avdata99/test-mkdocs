@@ -12,16 +12,13 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
-      # It will require a custom deploy
-      # - name: Deploy multi language
-      #   run: mkdocs build -f mkdocs-en.yml && mkdocs build -f mkdocs-es.yml
       - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        uses: avdata99/mkdocs-deploy-gh-pages@master
         # mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
         # mhausenblas/mkdocs-deploy-gh-pages@master to build with the mkdocs-material theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG_FILE: mkdocs-en.yml
+          CONFIG_FILES: mkdocs-en.yml mkdocs-es.yml
           # EXTRA_PACKAGES is for the apk add command of Alpine Linux before running pip install
           EXTRA_PACKAGES: | 
             build-base libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc
