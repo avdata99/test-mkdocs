@@ -49,7 +49,7 @@ plugins:
         cover_subtitle: Cover subtitle
         cover_logo: https://okfn.org/assets/img/OKF-logo-white-background.png
         # custom path for cover.html and/or style.css
-        custom_template_path: pdf-template
+        custom_template_path: pdf-template-en
         toc_title: Table of contents
         heading_shift: false
         toc_level: 3

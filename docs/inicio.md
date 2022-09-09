@@ -1,6 +1,6 @@
 # Bienvenido a la prueba de MkDocs
 
-Una version de este documento esta disponible en formato PDF [here](/pdf/doc.pdf).
+Una version de este documento esta disponible en formato PDF [here](../pdf/doc-es.pdf).
 
 ## Prueba de codigo fuente
 

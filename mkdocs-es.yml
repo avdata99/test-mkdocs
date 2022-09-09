@@ -15,11 +15,11 @@ repo_url: https://github.com/avdata99/test-mkdocs
 edit_uri: edit/main/docs
 
 nav:
-    - Inicio: index-es.md
+    - Inicio: inicio.md
     - Acerca de: 
-        - General: about/general-es.md
-        - Licencia: about/license-es.md
-    - Pagina de prubas: pagina-prueba-es.md
+        - General: about/generales.md
+        - Licencia: about/licencia.md
+    - Pagina de prubas: pagina-pruebas.md
     - Reportar errores: https://github.com/avdata99/test-mkdocs/issues
 
 # theme: readthedocs
@@ -41,16 +41,16 @@ plugins:
     #     company: OKFN
     #     author: Some OKFN member <some@okfn.org>
     - with-pdf:
-        author: Some OKFN member <some@okfn.org>
+        author: Algún miembro de OKFN <algun@okfn.org>
         copyright: OKFN CC BY-SA
         cover: true
         back_cover: true
-        cover_title: Cover title
-        cover_subtitle: Cover subtitle
+        cover_title: Pagina inicial PDF
+        cover_subtitle: Este es el subtitulo
         cover_logo: https://okfn.org/assets/img/OKF-logo-white-background.png
         # custom path for cover.html and/or style.css
-        custom_template_path: pdf-template
-        toc_title: Table of contents
+        custom_template_path-es: pdf-template
+        toc_title: Tabla de contenidos
         heading_shift: false
         toc_level: 3
         ordered_chapter_level: 2
@@ -97,7 +97,7 @@ extra:
           link: /test-mkdocs
           lang: en
         - name: Español
-          link: /test-mkdocs/es/index-es.html  # TODO
+          link: /test-mkdocs/es/inicio.html  # TODO
           lang: es
 
 markdown_extensions:
