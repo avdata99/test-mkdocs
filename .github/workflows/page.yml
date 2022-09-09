@@ -18,7 +18,7 @@ jobs:
         # mhausenblas/mkdocs-deploy-gh-pages@master to build with the mkdocs-material theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG_FILES: mkdocs-en.yml mkdocs-es.yml
+          CONFIG_FILES: mkdocs-es.yml mkdocs-en.yml
           # EXTRA_PACKAGES is for the apk add command of Alpine Linux before running pip install
           EXTRA_PACKAGES: |
             build-base libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc
