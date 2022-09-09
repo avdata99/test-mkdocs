@@ -94,7 +94,7 @@ extra:
     scoda_url: https://schoolofdata.org
     alternate:
         - name: English
-          link: /
+          link: /test-mkdocs
           lang: en
         - name: Español
           link: /test-mkdocs/es/index-es.html  # TODO
