@@ -13,7 +13,7 @@ docs_dir: docs-es
 copyright: Creative commons BY-SA. No rigths reserved @avdata99
 
 repo_url: https://github.com/avdata99/test-mkdocs
-edit_uri: edit/main/docs
+edit_uri: edit/main/docs-es
 
 nav:
     - Inicio: index.md
