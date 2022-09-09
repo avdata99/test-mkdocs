@@ -8,6 +8,7 @@ site_description: |
 site_author: Andres andres@data99.com.ar
 site_dir: site/es
 use_directory_urls: false
+docs_dir: docs-es
 
 copyright: Creative commons BY-SA. No rigths reserved @avdata99
 
@@ -15,10 +16,10 @@ repo_url: https://github.com/avdata99/test-mkdocs
 edit_uri: edit/main/docs
 
 nav:
-    - Inicio: inicio.md
+    - Inicio: index.md
     - Acerca de: 
-        - General: about/generales.md
-        - Licencia: about/licencia.md
+        - General: acerca-de/generales.md
+        - Licencia: acerca-de/licencia.md
     - Pagina de prubas: pagina-pruebas.md
     - Reportar errores: https://github.com/avdata99/test-mkdocs/issues
 
@@ -78,11 +79,11 @@ plugins:
         show_anchors: true
         verbose: true
 extra_css:
-    - css/custom.css
+    - assets/css/custom.css
 
 extra_javascript:
     - https://code.jquery.com/jquery-3.5.1.min.js
-    - js/app.js
+    - assets/js/app.js
 
 # extra_templates: []
 
@@ -92,12 +93,15 @@ extra:
     version: 0.1.6
     okfn_url: https://okfn.org
     scoda_url: https://schoolofdata.org
+    # TODO do nt work on MD files, onlye HTML :(
+    # Maybe this plugin https://github.com/rosscdh/mkdocs-markdownextradata-plugin
+    assets_folder: /test-mkdocs/es/assets
     alternate:
         - name: English
           link: /test-mkdocs
           lang: en
         - name: Español
-          link: /test-mkdocs/es/inicio.html  # TODO
+          link: /test-mkdocs/es/index.html  # TODO
           lang: es
 
 markdown_extensions:

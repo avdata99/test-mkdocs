@@ -24,7 +24,7 @@ if (test == true):
 ## Prueba de imagen
 
 <img class="cordoba-river-imag"
-    src="img/cordoba-rio.jpg" alt="Cordoba river"
+    src="/test-mkdocs/es/assets/img/cordoba-rio.jpg" alt="Cordoba river"
     title="Cordoba river"
     style="float: left; width: 150px; padding: 14px; margin: 14px; border: 2px solid red"/> 
 
