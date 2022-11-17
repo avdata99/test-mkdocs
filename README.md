@@ -1,3 +1,5 @@
+[![Publish docs via GitHub Pages](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/page.yml/badge.svg)](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/page.yml)
+
 # mkdocs Test site
 
 This template is still in progress.  
