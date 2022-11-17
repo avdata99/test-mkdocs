@@ -4,8 +4,8 @@ This template is still in progress.
 
 Static site generator with [mkdocs](https://www.mkdocs.org).  
 PDF built with [mkdocs-with-pdf](https://github.com/orzih/mkdocs-with-pdf).  
-Public URL: https://avdata99.github.io/test-mkdocs/  
-PDF version: https://avdata99.github.io/test-mkdocs/pdf/doc.pdf  
+Public URL: https://okfn.github.io/okfn-collaborative-docs/  
+PDF version: https://okfn.github.io/okfn-collaborative-docs/pdf/doc.pdf  
 
 ## Build & Deploy
 
@@ -24,12 +24,12 @@ Translations are [availabe](https://www.mkdocs.org/dev-guide/translations/) for 
 
 Steps to get you page and PDF done:
 
- - Create a new repo from the [base template](https://github.com/avdata99/test-mkdocs)
+ - Create a new repo from the [base template](https://github.com/okfn/okfn-collaborative-docs)
  - Modify ``index.md`` at ``docs`` and ``docs-es``
  - Create new md files at ``docs`` and ``docs-es`` folders
     - Include them at ``nav`` section at ``mkdocs-en.yml`` and ``mkdocs-es.yml``
  - Put static content at the ``assets`` folder (images, css, js, etc).  
- - Replace mkdocs files: test-mkdocs -> testing-mkdocs-multilang-template **TODO**
+ - Replace mkdocs files: okfn-collaborative-docs -> testing-mkdocs-multilang-template **TODO**
  - Enable the ``gh-pages`` branch to be published as GitHub Pages
  - Push! (all languages will be built automatically)
 

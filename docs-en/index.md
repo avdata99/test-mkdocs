@@ -42,7 +42,7 @@ if (test == true):
 ## Image test
 
 <img class="cordoba-river-imag"
-    src="/test-mkdocs/assets/img/cordoba-rio.jpg" alt="Cordoba river"
+    src="/okfn-collaborative-docs/assets/img/cordoba-rio.jpg" alt="Cordoba river"
     title="Cordoba river"
     style="float: left; width: 150px; padding: 14px; margin: 14px; border: 2px solid red"/> 
 

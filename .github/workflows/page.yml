@@ -16,7 +16,7 @@ jobs:
           cp -R assets docs/assets
           cp -R assets docs-es/assets
       - name: Deploy docs
-        uses: avdata99/mkdocs-deploy-gh-pages@master
+        uses: okfn/mkdocs-deploy-gh-pages@master
         # mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
         # mhausenblas/mkdocs-deploy-gh-pages@master to build with the mkdocs-material theme
         env:

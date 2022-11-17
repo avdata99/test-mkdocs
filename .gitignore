@@ -129,5 +129,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-docs/assets/
+docs-en/assets/
 docs-es/assets/

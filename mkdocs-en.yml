@@ -1,18 +1,18 @@
 # mkdocs config https://www.mkdocs.org/user-guide/configuration/#configuration
 
 site_name: !ENV [SITE_NAME, 'My site name']
-site_url: https://avdata99.github.io/test-mkdocs/
+site_url: https://okfn.github.io/okfn-collaborative-docs/
 site_description: |
   This is the site description
   (a test version)
 site_author: Andres andres@data99.com.ar
 site_dir: site
 use_directory_urls: false
-docs_dir: docs
+docs_dir: docs-en
 
-copyright: Creative commons BY-SA. No rigths reserved @avdata99
+copyright: Creative commons BY-SA. No rigths reserved @okfn
 
-repo_url: https://github.com/avdata99/test-mkdocs
+repo_url: https://github.com/okfn/okfn-collaborative-docs
 edit_uri: edit/main/docs
 
 nav:
@@ -21,7 +21,7 @@ nav:
         - General: about/general.md
         - License: about/license.md
     - Test page: test-page.md
-    - Issue tracker: https://github.com/avdata99/test-mkdocs/issues
+    - Issue tracker: https://github.com/okfn/okfn-collaborative-docs/issues
 
 # theme: readthedocs
 theme: 
@@ -95,13 +95,13 @@ extra:
     scoda_url: https://schoolofdata.org
     # TODO do nt work on MD files, onlye HTML :(
     # Maybe this plugin https://github.com/rosscdh/mkdocs-markdownextradata-plugin
-    assets_folder: /test-mkdocs/assets
+    assets_folder: /okfn-collaborative-docs/assets
     alternate:
         - name: English
-          link: /test-mkdocs
+          link: /okfn-collaborative-docs
           lang: en
         - name: Español
-          link: /test-mkdocs/es/index.html
+          link: /okfn-collaborative-docs/es/index.html
           lang: es
 
 markdown_extensions:
