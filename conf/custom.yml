@@ -1,0 +1,30 @@
+# Define your multilanguage documentation page here
+
+# Site names for each languages defines which languages are available
+site_name:
+    en: My site name
+    es: Mi sitio
+
+site_url: https://okfn.github.io/okfn-collaborative-docs/
+
+site_description: 
+  en: |
+    This is the site description
+    (a test version)
+  es: |
+    Esta es la descripción
+    del sitio
+
+site_author:
+    en: Me me@okfn.org
+    es: Yo yo@okfn.org
+
+repo_url: https://github.com/okfn/okfn-collaborative-docs
+
+nav:
+    - Home: index.md
+    - About: 
+        - General: about/general.md
+        - License: about/license.md
+    - Test page: test-page.md
+    - Issue tracker: https://github.com/okfn/okfn-collaborative-docs/issues
