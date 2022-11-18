@@ -8,7 +8,7 @@ site_description: |
 site_author: Andres andres@data99.com.ar
 site_dir: site/es
 use_directory_urls: false
-docs_dir: docs-es
+docs_dir: page/docs/docs-es
 
 copyright: Creative commons BY-SA. No rigths reserved @okfn
 
@@ -50,7 +50,7 @@ plugins:
         cover_subtitle: Este es el subtitulo
         cover_logo: https://okfn.org/assets/img/OKF-logo-white-background.png
         # custom path for cover.html and/or style.css
-        custom_template_path-es: pdf-template
+        custom_template_path-es: page/pdf/pdf-template-es
         toc_title: Tabla de contenidos
         heading_shift: false
         toc_level: 3

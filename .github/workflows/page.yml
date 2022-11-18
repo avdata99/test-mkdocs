@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Copy assets
         run: |
-          cp -R assets docs-en/assets
-          cp -R assets docs-es/assets
+          cp -R page/assets page/docs/docs-en/assets
+          cp -R page/assets page/docs/docs-es/assets
       - name: Deploy docs
         uses: okfn/mkdocs-deploy-gh-pages@master
         # mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
