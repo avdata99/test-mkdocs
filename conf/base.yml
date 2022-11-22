@@ -14,9 +14,6 @@ copyright:
         Creative commons BY-SA.
         Sin derechos reservados @okfn
 
-nav:
-    - Issue tracker: https://github.com/okfn/okfn-collaborative-docs/issues
-
 # theme: readthedocs
 theme: 
     name: material

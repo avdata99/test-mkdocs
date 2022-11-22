@@ -21,10 +21,22 @@ site_author:
 
 repo_url: https://github.com/okfn/okfn-collaborative-docs
 
+# Site index for all languages
+# md files are relatives to the page/docs/docs-LANG folder
+
 nav:
-    - Home: index.md
-    - About: 
-        - General: about/general.md
-        - License: about/license.md
-    - Test page: test-page.md
-    - Issue tracker: https://github.com/okfn/okfn-collaborative-docs/issues
+  nav-en:
+      - Home: index.md
+      - About:
+          - General: about/general.md
+          - License: about/license.md
+      - Test page: test-page.md
+      - Issue tracker: https://github.com/okfn/okfn-collaborative-docs/issues
+
+  nav-es:
+      - Inicio: index.md
+      - Acerca de: 
+          - General: acerca-de/generales.md
+          - Licencia: acerca-de/licencia.md
+      - Pagina de prubas: pagina-pruebas.md
+      - Reportar errores: https://github.com/okfn/okfn-collaborative-docs/issues
