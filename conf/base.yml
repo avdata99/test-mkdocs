@@ -1,9 +1,9 @@
 # Base settings
 # Usually you won't need to change anything here
 
-site_dir: site
+site_dir: ../site
 use_directory_urls: false
-docs_dir: page/docs/docs-en
+docs_dir: ../page/docs/docs-en
 edit_uri: edit/main/docs
 
 copyright:
@@ -80,19 +80,18 @@ extra_javascript:
 
 # extra: A set of key-value pairs, where the values can be any valid YAML 
 # construct, that will be passed to the template.
+# TODO do not work on MD files, onlye HTML :(
+# Maybe this plugin https://github.com/rosscdh/mkdocs-markdownextradata-plugin    
 extra:
     version: 0.1.5
     okfn_url: https://okfn.org
     scoda_url: https://schoolofdata.org
-    # TODO do nt work on MD files, onlye HTML :(
-    # Maybe this plugin https://github.com/rosscdh/mkdocs-markdownextradata-plugin
-    assets_folder: /okfn-collaborative-docs/assets
     alternate:
         - name: English
-          link: /okfn-collaborative-docs
+          link: /
           lang: en
         - name: Español
-          link: /okfn-collaborative-docs/es/index.html
+          link: /es/index.html
           lang: es
 
 markdown_extensions:

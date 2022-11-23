@@ -131,3 +131,5 @@ dmypy.json
 
 page/docs/docs-en/assets/
 page/docs/docs-es/assets/
+
+/conf/mkdocs-*.yml

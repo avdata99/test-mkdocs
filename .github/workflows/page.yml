@@ -15,6 +15,10 @@ jobs:
         run: |
           cp -R page/assets page/docs/docs-en/assets
           cp -R page/assets page/docs/docs-es/assets
+      - name: Build mkdoc yaml files
+        run: |
+          pip install -r requirements.txt
+          python3 code/okf-collab.py build
       - name: Deploy docs
         uses: okfn/mkdocs-deploy-gh-pages@master
         # mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme
