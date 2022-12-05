@@ -21,6 +21,17 @@ site_author:
 
 repo_url: https://github.com/okfn/okfn-collaborative-docs
 
+# Environment variables available for all md or HTML files
+# They are the same for all languages. Feel free to use
+# values like "- some-en-var: XX" + "- some-es-var: XX" to define 
+# different values for each language
+
+custom_extra:
+  test_var: "This is a test variable accessible as {{ test_var }}"
+  test_complex_obj:
+    test_var2: "This is a test variable accessible as {{ test_complex_obj.test_var }}"
+    test_var3: "This is a test variable accessible as {{ test_complex_obj.test_var2 }}"
+
 # Site index for all languages
 # md files are relatives to the page/docs/docs-LANG folder
 
