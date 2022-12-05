@@ -4,7 +4,11 @@ from mkdocs.commands import build
 from mkdocs import config as mkdocs_config
 import click
 import yaml
-from helpers import get_lang_setting, get_list_setting
+from helpers import (
+    get_lang_setting,
+    get_list_setting,
+    update_md_files
+)
 
 
 BASE_CONFIG_FILE = 'base.yml'
@@ -60,8 +64,12 @@ def build_config():
         wpdf_plugin['cover_subtitle'] = config['site_description']
         wpdf_plugin['author'] = config['site_author']
 
-        # TODO
-        # update extra - alternate with all languages
+        # Update extra values (our context values for all md and html files)
+        config['extra'].update(custom_config['custom_extra'])
+        # Update MD files with extra values
+        click.echo(f'Update docs folder: {config["docs_dir"]}')
+        fixed_folder = update_md_files(config['docs_dir'], BASE_CONFIG_FOLDER, context=config['extra'])
+        config['docs_dir'] = fixed_folder
 
         # write the final config file
         final_config_file = BASE_CONFIG_FOLDER / f'mkdocs-{language}.yml'

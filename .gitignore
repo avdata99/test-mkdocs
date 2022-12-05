@@ -133,3 +133,6 @@ page/docs/docs-en/assets/
 page/docs/docs-es/assets/
 
 /conf/mkdocs-*.yml
+
+# Hide fixed folder for MD files as templates
+**/fixed-*/

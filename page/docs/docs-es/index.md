@@ -2,6 +2,12 @@
 
 Una version de este documento esta disponible en formato PDF [here](pdf/doc-es.pdf).
 
+## Prueba de variables de entorno
+
+ - test_var: **{{ test_var }}**
+ - test_var2: **{{ test_complex_obj.test_var2 }}**
+ - test_var3: **{{ test_complex_obj.test_var3 }}**
+
 ## Prueba de codigo fuente
 
 Algo de código Python
