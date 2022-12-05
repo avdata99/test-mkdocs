@@ -30,7 +30,7 @@ if (test == true):
 ## Prueba de imagen
 
 <img class="cordoba-river-imag"
-    src="/okfn-collaborative-docs/es/assets/img/cordoba-rio.jpg" alt="Cordoba river"
+    src="{{ assets_folder }}/img/cordoba-rio.jpg" alt="Cordoba river"
     title="Cordoba river"
     style="float: left; width: 150px; padding: 14px; margin: 14px; border: 2px solid red"/> 
 

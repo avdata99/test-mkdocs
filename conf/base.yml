@@ -87,6 +87,7 @@ extra:
     version: 0.1.5
     okfn_url: https://okfn.org
     scoda_url: https://schoolofdata.org
+    assets_folder: /assets
     alternate:
         - name: English
           link: /
