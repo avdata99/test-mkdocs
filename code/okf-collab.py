@@ -1,4 +1,5 @@
 from pathlib import Path
+import shutil
 from mkdocs.commands import build
 from mkdocs import config as mkdocs_config
 import click
@@ -8,7 +9,9 @@ from helpers import get_lang_setting, get_list_setting
 
 BASE_CONFIG_FILE = 'base.yml'
 CUSTOM_CONFIG_FILE = 'custom.yml'
-BASE_CONFIG_FOLDER = Path(__file__).resolve().parent.parent / 'conf'
+BASE_FOLDER = Path(__file__).resolve().parent.parent
+BASE_CONFIG_FOLDER = Path(BASE_FOLDER) / 'conf'
+BASE_PAGE_FOLDER = Path(BASE_FOLDER) / 'page'
 
 
 @click.group()
@@ -81,8 +84,14 @@ def build_site():
         c += 1
         dirty = c>1
         click.echo(f'Building site for {language} (dirty:{dirty})')
-        build.build(mkdocs_config.load_config(config_file=open(config_file)), dirty=dirty)
-
+        config = mkdocs_config.load_config(config_file=open(config_file))
+        build.build(config, dirty=dirty)
+        # copy assets
+        src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
+        site_dir = config['site_dir']
+        dst_folder = Path(site_dir) / 'assets'
+        click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
+        shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
 
 @cli.command(
     'serve',
