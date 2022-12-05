@@ -71,6 +71,13 @@ def build_config():
         fixed_folder = update_md_files(config['docs_dir'], BASE_CONFIG_FOLDER, context=config['extra'])
         config['docs_dir'] = fixed_folder
 
+        # copy assets
+        src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
+        site_dir = config['site_dir']
+        dst_folder = Path(site_dir) / 'assets'
+        click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
+        shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
+
         # write the final config file
         final_config_file = BASE_CONFIG_FOLDER / f'mkdocs-{language}.yml'
         with open(final_config_file, 'w') as f:
@@ -94,12 +101,6 @@ def build_site():
         click.echo(f'Building site for {language} (dirty:{dirty})')
         config = mkdocs_config.load_config(config_file=open(config_file))
         build.build(config, dirty=dirty)
-        # copy assets
-        src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
-        site_dir = config['site_dir']
-        dst_folder = Path(site_dir) / 'assets'
-        click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
-        shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
 
 @cli.command(
     'serve',
