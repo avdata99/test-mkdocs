@@ -68,7 +68,8 @@ plugins:
         #
         #debug_html: true
         show_anchors: true
-        verbose: true
+        verbose: false
+
 extra_css:
     - assets/css/custom.css
 
