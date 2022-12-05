@@ -23,7 +23,7 @@ def get_list_setting(cfg_list, key):
 
 
 def _update_md_folder(docs_folder, context, fix_folder_fn):
-    """ Update the MD files with extra values within a fodler """
+    """ Update the MD files with extra values within a folder """
     if not os.path.exists(docs_folder):
         raise Exception(f'Docs folder not found: {docs_folder} at {os.getcwd()}')
     for root, dirs, files in os.walk(docs_folder):
