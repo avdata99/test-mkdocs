@@ -43,10 +43,6 @@ def build_config(env):
     click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
     shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
 
-    # Fix all language links with the public_url_base_path
-    if env == 'prod':
-        update_language_paths(base_config, custom_config['public_url_base_path'])
-
     # Detect languages to prepare final custom mkdocs
     languages = custom_config['site_name'].keys()
     click.echo(f'Languages found: {", ".join(languages)}')
