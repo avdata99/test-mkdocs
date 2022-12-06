@@ -34,6 +34,9 @@ def build_config(env):
     base_config = yaml.safe_load(open(BASE_CONFIG_FOLDER / BASE_CONFIG_FILE))
     custom_config = yaml.safe_load(open(BASE_CONFIG_FOLDER / CUSTOM_CONFIG_FILE))
 
+    # Define all language final paths
+    update_language_paths(custom_config, env)
+
     # Copy general assets (for all languages).
     src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
     dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
@@ -51,8 +54,6 @@ def build_config(env):
         # get the base setting
         config = base_config.copy()
 
-        # take lang-specific settings
-        config['copyright'] = get_lang_setting(base_config, language, 'copyright')
         config['theme']['language'] = language
         search_plugin = get_list_setting(config['plugins'], 'search')
         search_plugin['lang'] = language
@@ -61,6 +62,7 @@ def build_config(env):
 
         # Override custom settings
         config.update(custom_config)
+        config['copyright'] = get_lang_setting(custom_config, language, 'copyright')
         config['site_name'] = get_lang_setting(custom_config, language, 'site_name')
         config['site_description'] = get_lang_setting(custom_config, language, 'site_description')
         config['site_author'] = get_lang_setting(custom_config, language, 'site_author')
@@ -88,14 +90,19 @@ def build_config(env):
         fixed_folder = update_md_files(config['docs_dir'], BASE_CONFIG_FOLDER, context=config['extra'])
         config['docs_dir'] = fixed_folder
 
+        # Remove configurations not recognized by mkdocs
+        config.pop('public_url_base_path', None)
+        config.pop('custom_extra', None)
+
         # write the final config file
         final_config_file = BASE_CONFIG_FOLDER / f'mkdocs-{language}.yml'
         with open(final_config_file, 'w') as f:
             yaml.dump(config, f)
         click.echo(f'Config file written to {final_config_file}')
 
+
 @cli.command(
-    'build-site',
+    'build-local-site',
     short_help='Build static site to run locally'
 )
 def build_site():
@@ -111,6 +118,13 @@ def build_site():
         click.echo(f'Building site for {language} (dirty:{dirty})')
         config = mkdocs_config.load_config(config_file=open(config_file))
         build.build(config, dirty=dirty)
+
+    # Copy general assets (same for all languages).
+    src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
+    dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
+    click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
+    shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
+
 
 @cli.command(
     'serve',

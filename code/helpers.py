@@ -57,6 +57,10 @@ def update_md_files(docs_folder, config_folder, context):
     fixed_folder = '/'.join(parts)
     print(f'Fixing MD files in {docs_folder} -> {fixed_folder}')
 
+    if os.path.exists(fixed_folder):
+        print(f'Cleaning the fixed folder {fixed_folder}')
+        shutil.rmtree(fixed_folder)
+
     def fix_folder_fn(folder):
         dest_folder = folder.replace(docs_folder, fixed_folder)
         if not os.path.exists(dest_folder):
@@ -70,11 +74,18 @@ def update_md_files(docs_folder, config_folder, context):
     return fixed_folder
 
 
-def update_language_paths(config, new_base_path):
-    """ Each language has a base path that needs to be updated to the public URL.
+def update_language_paths(config, env='local'):
+    """ Each language has a base path that needs to be defined.
         This function overrides the config with the correct values. """
-    alternate = config['extra']['alternate']
+
+    alternate = config['custom_extra']['alternate']
+    new_list = []
     for lang in alternate:
-        for k, v in lang.items():
-            if k == 'link':
-                lang['link'] = new_base_path + v
+        lang_code = '' if lang['lang'] == 'en' else lang['lang']
+        if env == 'prod':
+            new_base_path = config['public_url_base_path']
+            lang['link'] = f'{new_base_path}/{lang_code}'
+        else:
+            lang['link'] = f'/{lang_code}'
+        new_list.append(lang)
+    config['custom_extra']['alternate'] = new_list
