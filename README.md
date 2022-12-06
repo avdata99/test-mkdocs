@@ -54,7 +54,7 @@ site_name:
 ```
 
 You can add as many languages as you want. 
-All languages defined in the `site_name` configuration will be required for other multilanguage configurations.  
+All languages will be required for other multilanguage configurations.  
 
 Now define your URL related settings.
 
@@ -71,7 +71,7 @@ public_url_base_path: /YOU-REPO-NAME
 
 The `site_description`, `copyright` and `site_author` are self-explanatory.  
 
-If you need to define custom custom context values to use in your templates, you can do it with the `custom_extra` setting.  
+If you need to define custom context values to use in your templates, you can do it with the `custom_extra` setting.  
 
 ### Define the site structure
 
@@ -88,7 +88,7 @@ If you need custom javascript, you can add them to the `page/assets/js/app.js` f
 
 ### Other static resources
 
-If you need images or other static resources, you can add them to the `page/assets` folder and they will be availabe
+If you need other static resources (like images), you can add them to the `page/assets` folder and they will be availabe
 at `{{ assets_folder }}` in your template/markdown files (they are several examples available in the test templates).  
 
 ### Run your site locally
