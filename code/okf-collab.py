@@ -33,6 +33,12 @@ def build_config(env):
     base_config = yaml.safe_load(open(BASE_CONFIG_FOLDER / BASE_CONFIG_FILE))
     custom_config = yaml.safe_load(open(BASE_CONFIG_FOLDER / CUSTOM_CONFIG_FILE))
 
+    # Copy general assets (for all languages).
+    src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
+    dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
+    click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
+    shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
+
     # Detect languages to prepare final custom mkdocs
     languages = custom_config['site_name'].keys()
     click.echo(f'Languages found: {", ".join(languages)}')
@@ -76,12 +82,6 @@ def build_config(env):
         click.echo(f'Update docs folder: {config["docs_dir"]}')
         fixed_folder = update_md_files(config['docs_dir'], BASE_CONFIG_FOLDER, context=config['extra'])
         config['docs_dir'] = fixed_folder
-
-        # copy assets
-        src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
-        dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
-        click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
-        shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
 
         # write the final config file
         final_config_file = BASE_CONFIG_FOLDER / f'mkdocs-{language}.yml'
