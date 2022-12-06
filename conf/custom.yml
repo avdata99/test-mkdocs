@@ -6,6 +6,10 @@ site_name:
     es: Mi sitio
 
 site_url: https://okfn.github.io/okfn-collaborative-docs/
+repo_url: https://github.com/okfn/okfn-collaborative-docs
+
+# Usually required for github pages. This is a base path for all URLs
+public_url_base_path: /okfn-collaborative-docs
 
 site_description: 
   en: |
@@ -18,8 +22,6 @@ site_description:
 site_author:
     en: Me me@okfn.org
     es: Yo yo@okfn.org
-
-repo_url: https://github.com/okfn/okfn-collaborative-docs
 
 # Environment variables available for all md or HTML files
 # They are the same for all languages. Feel free to use

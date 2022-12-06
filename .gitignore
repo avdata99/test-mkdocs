@@ -129,8 +129,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-page/docs/docs-en/assets/
-page/docs/docs-es/assets/
+page/docs/docs*/assets/
 
 /conf/mkdocs-*.yml
 

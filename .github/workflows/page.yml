@@ -14,7 +14,7 @@ jobs:
       - name: Build mkdoc yaml files
         run: |
           pip install -r requirements.txt
-          python3 code/okf-collab.py build-config
+          python3 code/okf-collab.py build-config --env=prod
       - name: Deploy docs
         uses: okfn/mkdocs-deploy-gh-pages@master
         # mhausenblas/mkdocs-deploy-gh-pages@nomaterial to build without the mkdocs-material theme

@@ -27,7 +27,8 @@ def cli():
     'build-config',
     short_help='Build config files for all languages'
 )
-def build_config():
+@click.option('--env', '-e', default='local', help='Environment to build for (local or prod)')
+def build_config(env):
     """ Build the config file """
     base_config = yaml.safe_load(open(BASE_CONFIG_FOLDER / BASE_CONFIG_FILE))
     custom_config = yaml.safe_load(open(BASE_CONFIG_FOLDER / CUSTOM_CONFIG_FILE))
@@ -64,6 +65,11 @@ def build_config():
         wpdf_plugin['cover_subtitle'] = config['site_description']
         wpdf_plugin['author'] = config['site_author']
 
+        # Changes for prod env
+        if env == 'prod':
+            # Prod env can use custom base path for URLs, locally is not required
+            config['extra']['assets_folder'] = config['public_url_base_path'] + config['extra']['assets_folder']
+        
         # Update extra values (our context values for all md and html files)
         config['extra'].update(custom_config['custom_extra'])
         # Update MD files with extra values
@@ -73,8 +79,7 @@ def build_config():
 
         # copy assets
         src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
-        site_dir = config['site_dir']
-        dst_folder = Path(site_dir) / 'assets'
+        dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
         click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
         shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
 
@@ -86,7 +91,7 @@ def build_config():
 
 @cli.command(
     'build-site',
-    short_help='Build static site and PDFs for all languages'
+    short_help='Build static site to run locally'
 )
 def build_site():
     """ Build the site """
