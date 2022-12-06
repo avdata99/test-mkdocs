@@ -7,7 +7,8 @@ import yaml
 from helpers import (
     get_lang_setting,
     get_list_setting,
-    update_md_files
+    update_language_paths,
+    update_md_files,
 )
 
 
@@ -38,6 +39,10 @@ def build_config(env):
     dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
     click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
     shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
+
+    # Fix all language links with the public_url_base_path
+    if env == 'prod':
+        update_language_paths(base_config, custom_config['public_url_base_path'])
 
     # Detect languages to prepare final custom mkdocs
     languages = custom_config['site_name'].keys()

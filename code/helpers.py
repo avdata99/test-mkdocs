@@ -68,3 +68,13 @@ def update_md_files(docs_folder, config_folder, context):
     # Back to previous folder
     os.chdir(pwd)
     return fixed_folder
+
+
+def update_language_paths(config, new_base_path):
+    """ Each language has a base path that needs to be updated to the public URL.
+        This function overrides the config with the correct values. """
+    alternate = config['extra']['alternate']
+    for lang in alternate:
+        for k, v in lang.items():
+            if k == 'link':
+                lang['link'] = new_base_path + v
