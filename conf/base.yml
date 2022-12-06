@@ -6,14 +6,6 @@ use_directory_urls: false
 docs_dir: ../page/docs/docs-en
 edit_uri: edit/main/docs
 
-copyright:
-    en: | 
-        Creative commons BY-SA.
-        No rigths reserved @okfn
-    es: |
-        Creative commons BY-SA.
-        Sin derechos reservados @okfn
-
 # theme: readthedocs
 theme: 
     name: material
@@ -88,13 +80,6 @@ extra:
     okfn_url: https://okfn.org
     scoda_url: https://schoolofdata.org
     assets_folder: /assets
-    alternate:
-        - name: English
-          link: /
-          lang: en
-        - name: Español
-          link: /es/index.html
-          lang: es
 
 markdown_extensions:
   - pymdownx.highlight:

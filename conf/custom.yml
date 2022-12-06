@@ -23,12 +23,27 @@ site_author:
     en: Me me@okfn.org
     es: Yo yo@okfn.org
 
+copyright:
+    en: | 
+        Creative commons BY-SA.
+        No rigths reserved @okfn
+    es: |
+        Creative commons BY-SA.
+        Sin derechos reservados @okfn
+
+
 # Environment variables available for all md or HTML files
 # They are the same for all languages. Feel free to use
 # values like "- some-en-var: XX" + "- some-es-var: XX" to define 
 # different values for each language
 
 custom_extra:
+  # define all available languages
+  alternate:
+    - name: English
+      lang: en
+    - name: Español
+      lang: es
   test_var: "This is a test variable accessible as {{ test_var }}"
   test_complex_obj:
     test_var2: "This is a test variable accessible as {{ test_complex_obj.test_var }}"
@@ -36,6 +51,7 @@ custom_extra:
 
 # Site index for all languages
 # md files are relatives to the page/docs/docs-LANG folder
+# The HOME page should always point to an index.md file
 
 nav:
   nav-en:
