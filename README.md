@@ -17,6 +17,7 @@ Do not forget to define your new repository as **Public**.
 
 ### Prepare your local environment.
 
+Clone your new pository and install the project requirements.
 This is an example for Linux/Ubuntu:
 
 ```bash
@@ -27,6 +28,7 @@ python3 -m venv /path/to/new/virtual/environment
 # Activate the virtual environment
 source /path/to/new/virtual/environment/bin/activate
 # Install the project requirements
+cd YOUR-REPO-NAME
 pip install -r requirements.txt
 ``` 
 
@@ -59,11 +61,13 @@ All languages will be required for other multilanguage configurations.
 Now define your URL related settings.
 
 ```yaml
-site_url: https://okfn.github.io/YOU-REPO-NAME
+site_url: https://USER.github.io/YOU-REPO-NAME
 # Or https:/your-doc-site.org if you have a custom domain and point it to GitHub Pages
-repo_url: https://github.com/okfn/YOU-REPO-NAME
+repo_url: https://github.com/USER/YOU-REPO-NAME
 
 # Usually required for github pages. This is a base path for all URLs
+# Your site will be available at https://USER.github.io/YOU-REPO-NAME so all URLs
+# will be relative to this path
 public_url_base_path: /YOU-REPO-NAME
 # or empty public_url_base_path: 
 # if you have a custom domain
@@ -76,10 +80,13 @@ If you need to define custom context values to use in your templates, you can do
 ### Define the site structure
 
 The `nav` setting is the main configuration for the site structure.  
-Yuo need to add a sub-section for each language (`nav-en`, `nav-es`, etc).  
+You need to add a sub-section for each language (`nav-en`, `nav-es`, etc).  
 
 Inside the `page/docs` folder you need to create (if not exists) a folder
 for each language (`docs-en`, `docs-es`, etc).  
+
+Inside each language folder you need to create (if not exists) the same
+files described in the `nav-LANG` setting.  
 
 ### Custom site styles and javascript
 
@@ -91,13 +98,19 @@ If you need custom javascript, you can add them to the `page/assets/js/app.js` f
 If you need other static resources (like images), you can add them to the `page/assets` folder and they will be availabe
 at `{{ assets_folder }}` in your template/markdown files (they are several examples available in the test templates).  
 
-### Run your site locally
+For example `<img src="{{ assets_folder }}/img/cordoba-rio.jpg"/>` or
+`![cba river]({{ assets_folder }}/img/cordoba-rio.jpg)`.  
+
+### Prepare your site
 
 Prepare your internal custom settings for each language and prepare the environment
 
 ```bash
 python3 code/okf-collab.py build-config
 ```
+
+For a list of common errors building your site, see [here](docs/build-errors.md).  
+
 This process will create files and folders:
  - All the `conf/mkdocs-LANG.yml` required files (you don't need to touch them)
  - All the `page/docs/fixed-docs-LANG` required folder with an updated version of your MD files
@@ -105,7 +118,20 @@ This process will create files and folders:
 
 You don't need to touch any of this resources. They are _.gitignored_ and will be used to build the site.  
 
-Build your local site
+**You are now ready to deploy your site to GitHub pages**, just push your changes to GitHub.  
+You can check the build process at the _Actions_ tab (https://github.com/USER/REPO-NAME/actions).  
+Once the GitHub action finished, you'll need to enable github pages at https://github.com/USER/REPO-NAME/settings/page
+and select the `gh-pages` branch.  
+
+![gh pages](/docs/imgs/gh-pages.png)
+
+After some minutes (GitHub will process your static site), your site will be available at https://USER.github.io/REPO-NAME  
+
+#### Build your local site
+
+You can also test you site locally and skip waiting for each GitHub action to finish.  
+You can do this by builing the site locally and serving it with a local server.  
+
 ```
 python3 code/okf-collab.py build-local-site
 ```

@@ -1,6 +1,5 @@
 $( document ).ready(function() {
 
-	$("h1").hide(1200);
-    $("h1").show(1600);
+	$("h1").addClass("some-red-text");
 
 });

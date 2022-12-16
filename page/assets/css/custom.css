@@ -2,3 +2,11 @@
 .md-typeset h1 {
     color: #3d0808
 }
+
+img {
+    max-width: 45px;
+}
+
+.some-red-text {
+    color: #ff0000;
+}
