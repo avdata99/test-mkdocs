@@ -68,7 +68,7 @@ def build_config(env):
         config['site_description'] = get_lang_setting(custom_config, language, 'site_description')
         config['site_author'] = get_lang_setting(custom_config, language, 'site_author')
         config['nav'] = custom_config['nav'][f'nav-{language}']
-
+        config['edit_uri'] = base_config['edit_uri'].replace('LANG', language)
         config['docs_dir'] = f"../page/docs/docs-{language}"
         if language == 'en':
             config['site_dir'] = f"../site"
