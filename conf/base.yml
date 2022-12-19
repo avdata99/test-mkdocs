@@ -4,7 +4,7 @@
 site_dir: ../site
 use_directory_urls: false
 docs_dir: ../page/docs/docs-en
-edit_uri: edit/main/docs
+edit_uri: edit/main/page/docs/docs-LANG
 
 # theme: readthedocs
 theme: 
