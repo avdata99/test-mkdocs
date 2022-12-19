@@ -144,7 +144,7 @@ This process will create files and folders:
 
 You don't need to touch any of this resources. They are _.gitignored_ and will be used to build the site.  
 
-**You are now ready to deploy your site to GitHub pages**, just push your changes to GitHub.  
+If this process succeeds, then **you're ready to deploy your site to GitHub Pages**, simply push your changes to GitHub.  
 You can check the build process at the _Actions_ tab (https://github.com/USER/REPO-NAME/actions).  
 Once the GitHub action finished, you'll need to enable github pages at https://github.com/USER/REPO-NAME/settings/page
 and select the `gh-pages` branch.  
@@ -162,7 +162,7 @@ You can do this by builing the site locally and serving it with a local server.
 python3 code/okf-collab.py build-local-site
 ```
 
-Serve the site locally
+... and serve the site locally
 
 ```
 python3 code/okf-collab.py serve
