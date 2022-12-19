@@ -37,6 +37,11 @@ def build_config(env):
     # Define all language final paths
     update_language_paths(custom_config, env)
 
+    # Changes for prod env
+    if env == 'prod':
+        # Prod env can use custom base path for URLs, locally is not required
+        base_config['extra']['assets_folder'] = custom_config['public_url_base_path'] + base_config['extra']['assets_folder']
+
     # Copy general assets (for all languages).
     src_folder = Path(BASE_PAGE_FOLDER) / 'assets'
     dst_folder = Path(BASE_FOLDER) / 'site' / 'assets'
@@ -73,11 +78,6 @@ def build_config(env):
         wpdf_plugin['cover_title'] = config['site_name']
         wpdf_plugin['cover_subtitle'] = config['site_description']
         wpdf_plugin['author'] = config['site_author']
-
-        # Changes for prod env
-        if env == 'prod':
-            # Prod env can use custom base path for URLs, locally is not required
-            config['extra']['assets_folder'] = config['public_url_base_path'] + config['extra']['assets_folder']
 
         # fix CSS and JS statics
         final_css = []
