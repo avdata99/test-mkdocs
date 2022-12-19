@@ -77,6 +77,28 @@ The `site_description`, `copyright` and `site_author` are self-explanatory.
 
 If you need to define custom context values to use in your templates, you can do it with the `custom_extra` setting.  
 
+Some examples:
+
+```yaml
+custom_extra:
+
+  # other custom extras (like alternate for )...
+  # define custom context values
+
+  my_value: Some text (will be available for all .md and .html files as {{ my_value }})
+  my_dict:
+    some_key: "my custom value in english" (will be available for all .md and .html files as {{ my_dict.some_key }})
+    some_key2: "mi valor personalizado en español"
+  my_list:
+    # available to iterate with {% for item in my_list %} {{ item }} {% endfor %}
+    - "my custom value in english" (will be available for all .md and .html files as {{ my_list.0 }})
+    - "mi valor personalizado en español"
+  my_list_of_dicts:
+    # available to iterate with {% for k, v in my_list_of_dicts %} {{ k }}: {{ v }} {% endfor %}
+    - some_key: "my custom value in english"
+    - some_key2: "mi valor personalizado en español"
+```
+
 ### Define the site structure
 
 The `nav` setting is the main configuration for the site structure.  
