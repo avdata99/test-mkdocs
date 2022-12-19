@@ -141,19 +141,19 @@ def build_site():
     'serve',
     short_help='Serve static site'
 )
-def serve():
+@click.option('--port', '-p', default=8033, type=click.INT, help='Port for the test local erver')
+def serve(port):
     import http.server
     import socketserver
 
-    PORT = 8033
     DIRECTORY = "site"
     class Handler(http.server.SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, directory=DIRECTORY, **kwargs)
 
 
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print(f"serving at http://localhost:{PORT}")
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        print(f"serving at http://localhost:{port}")
         httpd.serve_forever()
 
 

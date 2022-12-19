@@ -166,7 +166,8 @@ python3 code/okf-collab.py serve
 
 You'll see `serving at http://localhost:8033` and your local site is now redy to test with
 all the languages you defined.  
-
+**Note**: If you have a `Port in use` error, you can call
+`python3 code/okf-collab.py serve -p 8034` to use a different port.  
 
 ### PDF version
 

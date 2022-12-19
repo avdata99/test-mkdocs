@@ -34,7 +34,7 @@ copyright:
 
 # Environment variables available for all md or HTML files
 # They are the same for all languages. Feel free to use
-# values like "- some-en-var: XX" + "- some-es-var: XX" to define 
+# values like "- some_en_var: XX" + "- some_es_var: XX" to define 
 # different values for each language
 
 custom_extra:
