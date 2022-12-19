@@ -78,7 +78,22 @@ def build_config(env):
         if env == 'prod':
             # Prod env can use custom base path for URLs, locally is not required
             config['extra']['assets_folder'] = config['public_url_base_path'] + config['extra']['assets_folder']
-        
+
+        # fix CSS and JS statics
+        final_css = []
+        for css in config['extra_css']:
+            if css.startswith('/'):
+                css = config['extra']['assets_folder'] + css
+            final_css.append(css)
+        config['extra_css'] = final_css
+
+        final_js = []
+        for js in config['extra_javascript']:
+            if js.startswith('/'):
+                js = config['extra']['assets_folder'] + js
+            final_js.append(js)
+        config['extra_javascript'] = final_js
+
         # Update extra values (our context values for all md and html files)
         config['extra'].update(custom_config['custom_extra'])
         # Update MD files with extra values
