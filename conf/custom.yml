@@ -51,7 +51,9 @@ custom_extra:
 
 # Site index for all languages
 # md files are relatives to the page/docs/docs-LANG folder
+# *****************************************************
 # The HOME page should always point to an index.md file
+# *****************************************************
 
 nav:
   nav-en:
