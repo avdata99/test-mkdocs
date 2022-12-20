@@ -7,6 +7,7 @@ import yaml
 from helpers import (
     get_lang_setting,
     get_list_setting,
+    update_gh_action_language_files,
     update_language_paths,
     update_md_files,
 )
@@ -50,6 +51,12 @@ def build_config(env):
 
     # Detect languages to prepare final custom mkdocs
     languages = custom_config['site_name'].keys()
+
+    # Update the GitHub action to contain the correct language files
+    gh_workflow_file_path = Path(BASE_FOLDER) / '.github/workflows/page.yml'
+    click.echo(f'Updating GitHub action file: {gh_workflow_file_path}')
+    update_gh_action_language_files(gh_workflow_file_path, languages)
+
     click.echo(f'Languages found: {", ".join(languages)}')
     for language in languages:
         # get the base setting
