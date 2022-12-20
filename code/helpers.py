@@ -89,3 +89,30 @@ def update_language_paths(config, env='local'):
             lang['link'] = f'/{lang_code}'
         new_list.append(lang)
     config['custom_extra']['alternate'] = new_list
+
+
+def update_gh_action_language_files(gh_workflow_file_path, langs):
+    """ Update the CONFIG_FILES setting from the actions file /.github/workflows/page.yml
+        We need to be sure that the language files are updated and in the rigth order
+        (EN must be the last one). """
+
+    # yaml lib destroys the YAML file, manually it's better
+
+    f = open(gh_workflow_file_path, 'r')
+    lines = f.readlines()
+    f.close()
+
+    updated_lines = []
+    auto_comment = '# Automatically updated, commit and do not change'
+    for line in lines:
+        if line.strip().startswith(auto_comment):
+            continue
+        if line.strip().startswith('CONFIG_FILES'):
+            all_but_en = [lang for lang in langs if lang != 'en']
+            line = f'          CONFIG_FILES: {" ".join([f"conf/mkdocs-{lang}.yml" for lang in all_but_en])} conf/mkdocs-en.yml\n'
+            updated_lines.append(f'          {auto_comment}\n')
+        updated_lines.append(line)
+    
+    f = open(gh_workflow_file_path, 'w')
+    f.writelines(updated_lines)
+    f.close()
