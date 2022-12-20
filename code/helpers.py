@@ -109,7 +109,8 @@ def update_gh_action_language_files(gh_workflow_file_path, langs):
             continue
         if line.strip().startswith('CONFIG_FILES'):
             all_but_en = [lang for lang in langs if lang != 'en']
-            line = f'          CONFIG_FILES: {" ".join([f"conf/mkdocs-{lang}.yml" for lang in all_but_en])} conf/mkdocs-en.yml\n'
+            config_files = " ".join([f"conf/mkdocs-{lang}.yml" for lang in all_but_en])
+            line = f'          CONFIG_FILES: {config_files} conf/mkdocs-en.yml\n'
             updated_lines.append(f'          {auto_comment}\n')
         updated_lines.append(line)
     
