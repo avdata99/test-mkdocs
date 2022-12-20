@@ -55,10 +55,6 @@ site_name:
     es: Mi sitio
 ```
 
-Until [#8](https://github.com/okfn/okfn-collaborative-docs/issues/8) is done,
-you need to define the languages config files in `CONFIG_FILES` from the actions
-file `/.github/workflows/page.yml`.  
-
 You can add as many languages as you want. 
 All languages will be required for other multilanguage configurations.  
 
