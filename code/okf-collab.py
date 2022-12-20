@@ -57,6 +57,19 @@ def build_config(env):
     click.echo(f'Updating GitHub action file: {gh_workflow_file_path}')
     update_gh_action_language_files(gh_workflow_file_path, languages)
 
+    # ====================
+    # URLs
+    repo_name = custom_config.pop('repo_name', None)
+    repo_user = custom_config.pop('repo_user', None)
+    custom_config['repo_url'] = f'https://github.com/{repo_user}/{repo_name}'
+
+    if custom_config.get('custom_site_url'):
+        custom_config['site_url'] = custom_config['custom_site_url']
+    else:
+        custom_config['public_url_base_path'] = f'/{repo_name}'
+        custom_config['site_url'] = f'https://{repo_user}.github.io/{repo_name}'
+    # ====================
+
     click.echo(f'Languages found: {", ".join(languages)}')
     for language in languages:
         # get the base setting

@@ -61,16 +61,14 @@ All languages will be required for other multilanguage configurations.
 Now define your URL related settings.
 
 ```yaml
-site_url: https://USER.github.io/YOU-REPO-NAME
-# Or https:/your-doc-site.org if you have a custom domain and point it to GitHub Pages
-repo_url: https://github.com/USER/YOU-REPO-NAME
 
-# Usually required for github pages. This is a base path for all URLs
-# Your site will be available at https://USER.github.io/YOU-REPO-NAME so all URLs
-# will be relative to this path
-public_url_base_path: /YOU-REPO-NAME
-# or empty public_url_base_path: 
-# if you have a custom domain
+# repo_user and repo_name from the GitHub repository url: https://github.com/REPO_USER/REPO_NAME
+repo_user: okfn
+repo_name: okfn-collaborative-docs
+
+# Only for custom domains you can use:
+custom_site_url: https://your-site.org  # only required if you plan to use a custom domain (no GitHub pages default like https://USER.github.io/YOU-REPO-NAME)
+public_url_base_path: /some-base-path-folder
 ```
 
 The `site_description`, `copyright` and `site_author` are self-explanatory.  
