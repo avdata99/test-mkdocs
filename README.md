@@ -36,6 +36,8 @@ pip install -r requirements.txt
 
 Your main configuration file is `/conf/custom.yml`.  
 
+#### Languages
+
 First of all, you need to define your site name and the languages you want to use.  
 Define languages at `custom_extra`->`alternate` and the site name at `site_name`.  
 
@@ -58,20 +60,28 @@ site_name:
 You can add as many languages as you want. 
 All languages will be required for other multilanguage configurations.  
 
-Now define your URL related settings.
+#### URL settings
+
+Now, define your GitHub (required) settings.
 
 ```yaml
-site_url: https://USER.github.io/YOU-REPO-NAME
-# Or https:/your-doc-site.org if you have a custom domain and point it to GitHub Pages
-repo_url: https://github.com/USER/YOU-REPO-NAME
-
-# Usually required for github pages. This is a base path for all URLs
-# Your site will be available at https://USER.github.io/YOU-REPO-NAME so all URLs
-# will be relative to this path
-public_url_base_path: /YOU-REPO-NAME
-# or empty public_url_base_path: 
-# if you have a custom domain
+repo_user: your-github-user-or-org-name
+repo_name: you-new-repo-name
 ```
+_Note:_ `repo_user` and `repo_name` came from your new GitHub repository url: https://github.com/REPO_USER/REPO_NAME
+
+If you plan to use the default GitHub domain, you are done with this settings.  
+The site will be available at https://USER.github.io/YOU-REPO-NAME.  
+Conversely, if you plan to use a custom domain, you'll need something like this:
+
+```yaml
+# Only for custom domains you can use:
+custom_site_url: https://your-site.org
+# public_url_base_path: /some-base-path-folder (only if required)
+```
+_Note:_ You'll need a CNAME record pointing to `USER.github.io`
+
+#### Other settings
 
 The `site_description`, `copyright` and `site_author` are self-explanatory.  
 
