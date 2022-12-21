@@ -59,12 +59,13 @@ def build_config(env):
 
     # ====================
     # URLs
-    repo_name = custom_config.pop('repo_name', None)
-    repo_user = custom_config.pop('repo_user', None)
+    repo_name = custom_config.pop('repo_name')
+    repo_user = custom_config.pop('repo_user')
     custom_config['repo_url'] = f'https://github.com/{repo_user}/{repo_name}'
 
     if custom_config.get('custom_site_url'):
         custom_config['site_url'] = custom_config['custom_site_url']
+        custom_config['public_url_base_path'] = custom_config.get('public_url_base_path', '')
     else:
         custom_config['public_url_base_path'] = f'/{repo_name}'
         custom_config['site_url'] = f'https://{repo_user}.github.io/{repo_name}'

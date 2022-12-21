@@ -36,6 +36,8 @@ pip install -r requirements.txt
 
 Your main configuration file is `/conf/custom.yml`.  
 
+#### Languages
+
 First of all, you need to define your site name and the languages you want to use.  
 Define languages at `custom_extra`->`alternate` and the site name at `site_name`.  
 
@@ -58,18 +60,28 @@ site_name:
 You can add as many languages as you want. 
 All languages will be required for other multilanguage configurations.  
 
-Now define your URL related settings.
+#### URL settings
+
+Now, define your GitHub (required) settings.
 
 ```yaml
-
-# repo_user and repo_name from the GitHub repository url: https://github.com/REPO_USER/REPO_NAME
-repo_user: okfn
-repo_name: okfn-collaborative-docs
-
-# Only for custom domains you can use:
-custom_site_url: https://your-site.org  # only required if you plan to use a custom domain (no GitHub pages default like https://USER.github.io/YOU-REPO-NAME)
-public_url_base_path: /some-base-path-folder
+repo_user: your-github-user-or-org-name
+repo_name: you-new-repo-name
 ```
+_Note:_ `repo_user` and `repo_name` came from your new GitHub repository url: https://github.com/REPO_USER/REPO_NAME
+
+If you plan to use the default GitHub domain, you are done with this settings.  
+The site will be available at https://USER.github.io/YOU-REPO-NAME.  
+Conversely, if you plan to use a custom domain, you'll need something like this:
+
+```yaml
+# Only for custom domains you can use:
+custom_site_url: https://your-site.org
+# public_url_base_path: /some-base-path-folder (only if required)
+```
+_Note:_ You'll need a CNAME record pointing to `USER.github.io`
+
+#### Other settings
 
 The `site_description`, `copyright` and `site_author` are self-explanatory.  
 
