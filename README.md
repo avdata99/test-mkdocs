@@ -1,4 +1,5 @@
 [![Publish docs via GitHub Pages](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/page.yml/badge.svg)](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/page.yml)
+[![Tests](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/tests.yml/badge.svg)](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/tests.yml)
 
 # OKFN Collaborative Documentation tool
 
