@@ -9,7 +9,7 @@ site_name:
 # If you plan to use GitHub domain (like https://USER.github.io/YOU-REPO-NAME), leave it commented
 # custom_site_url: https://your-custom-domain.org
 
-# repo_user and repo_name from the GitHub repository url: https://github.com/REPO_USER/REPO_NAME
+# repo_user and repo_name came from the GitHub repository url: https://github.com/REPO_USER/REPO_NAME
 repo_user: okfn
 repo_name: okfn-collaborative-docs
 
