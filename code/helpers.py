@@ -113,7 +113,7 @@ def update_gh_action_language_files(gh_workflow_file_path, langs):
             line = f'          CONFIG_FILES: {config_files} conf/mkdocs-en.yml\n'
             updated_lines.append(f'          {auto_comment}\n')
         updated_lines.append(line)
-    
+
     f = open(gh_workflow_file_path, 'w')
     f.writelines(updated_lines)
     f.close()

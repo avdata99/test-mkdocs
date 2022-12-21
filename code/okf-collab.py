@@ -92,7 +92,7 @@ def build_config(env):
         config['edit_uri'] = base_config['edit_uri'].replace('LANG', language)
         config['docs_dir'] = f"../page/docs/docs-{language}"
         if language == 'en':
-            config['site_dir'] = f"../site"
+            config['site_dir'] = "../site"
         else:
             config['site_dir'] = f"../site/{language}"
 
@@ -146,7 +146,7 @@ def build_site():
     for language in languages:
         config_file = BASE_CONFIG_FOLDER / f'mkdocs-{language}.yml'
         c += 1
-        dirty = c>1
+        dirty = c > 1
         click.echo(f'Building site for {language} (dirty:{dirty})')
         config = mkdocs_config.load_config(config_file=open(config_file))
         build.build(config, dirty=dirty)
@@ -168,10 +168,10 @@ def serve(port):
     import socketserver
 
     DIRECTORY = "site"
+
     class Handler(http.server.SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, directory=DIRECTORY, **kwargs)
-
 
     with socketserver.TCPServer(("", port), Handler) as httpd:
         print(f"serving at http://localhost:{port}")

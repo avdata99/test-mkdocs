@@ -1,5 +1,5 @@
 name: Test this tool
-on: [push, pull_request]
+on: push
 
 jobs:
   build:
@@ -27,6 +27,7 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8 code --count --show-source --max-complexity=10 --max-line-length=127 --statistics
+
       - name: Test with pytest
         run: |
           pytest -v
