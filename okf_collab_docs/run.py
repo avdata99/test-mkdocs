@@ -4,6 +4,7 @@ from mkdocs.commands import build
 from mkdocs import config as mkdocs_config
 import click
 import yaml
+
 from helpers import (
     get_lang_setting,
     get_list_setting,

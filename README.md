@@ -139,7 +139,7 @@ For example `<img src="{{ assets_folder }}/img/cordoba-rio.jpg"/>` or
 Prepare your internal custom settings for each language and prepare the environment
 
 ```bash
-python3 code/okf-collab.py build-config
+python3 okf_collab_docs/run.py build-config
 ```
 
 For a list of common errors building your site, see [here](docs/build-errors.md).  
@@ -166,19 +166,19 @@ You can also test you site locally and skip waiting for each GitHub action to fi
 You can do this by builing the site locally and serving it with a local server.  
 
 ```
-python3 code/okf-collab.py build-local-site
+python3 okf_collab_docs/run.py build-local-site
 ```
 
 ... and serve the site locally
 
 ```
-python3 code/okf-collab.py serve
+python3 okf_collab_docs/run.py serve
 ```
 
 You'll see `serving at http://localhost:8033` and your local site is now redy to test with
 all the languages you defined.  
 **Note**: If you have a `Port in use` error, you can call
-`python3 code/okf-collab.py serve -p 8034` to use a different port.  
+`python3 okf_collab_docs/run.py serve -p 8034` to use a different port.  
 
 ### PDF version
 
