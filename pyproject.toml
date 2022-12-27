@@ -1,2 +1,2 @@
 [tool.pytest.ini_options]
-pythonpath = "okf_collab_docs"
+pythonpath = "okf_collab_docs tests"

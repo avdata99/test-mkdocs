@@ -7,6 +7,7 @@ from helpers import (
     update_language_paths,
 )
 
+
 def test_get_lang_setting():
     """ Get the language-specific setting from the config dict """
 
@@ -20,16 +21,18 @@ def test_get_lang_setting():
     with pytest.raises(ValueError) as e:
         get_lang_setting(cfg_dict, 'fr', 'invalid_key')
     assert str(e.value) == 'Key "invalid_key" not found in config dict'
-    
+
     with pytest.raises(ValueError) as e:
         get_lang_setting(cfg_dict, 'es', 'some_key')
     assert str(e.value) == 'Language "es" not found for setting "some_key" in config'
+
 
 def test_get_list_setting():
 
     cfg_list = [{'set1': {'k10': 'v10', 'k11': 'v11'}}, {'set2': {'k20': 'v20', 'k21': 'v21'}}]
     key = 'set2'
     assert get_list_setting(cfg_list, key) == {'k20': 'v20', 'k21': 'v21'}
+
 
 def test_update_language_paths_local():
     config = {
@@ -49,6 +52,7 @@ def test_update_language_paths_local():
         {'lang': 'fr', 'link': '/fr', 'name': 'Français'},
         {'lang': 'es', 'link': '/es', 'name': 'Español'},
     ]
+
 
 def test_update_language_paths_prod():
     config = {
@@ -71,7 +75,7 @@ def test_update_language_paths_prod():
 
 
 def test_update_gh_action_language_files():
-    gh_workflow_file_path='fake-file.yml'
+    gh_workflow_file_path = 'fake-file.yml'
     langs = ['es', 'en', 'pt']
     lines = [
         'pre-text',
