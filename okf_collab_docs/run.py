@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 import shutil
 from mkdocs.commands import build
@@ -17,7 +16,7 @@ from helpers import (
 )
 
 
-BASE_FOLDER = base_folder=Path(__file__).resolve().parent.parent
+BASE_FOLDER = Path(__file__).resolve().parent.parent
 
 
 @click.group()
@@ -38,7 +37,7 @@ def build_config(env):
 
     # Define all language final paths
     update_language_paths(custom_config, env)
-    
+
     # Changes for prod env
     if env == 'prod':
         # Prod env can use custom base path for URLs, locally is not required
