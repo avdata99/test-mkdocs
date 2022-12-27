@@ -111,3 +111,26 @@ def test_gh_site_url():
     for final_config_file in final_config_files:
         res = get_yaml(final_config_file)
         assert res['site_url'] == f"https://{overrides['repo_user']}.github.io/{overrides['repo_name']}"
+
+
+def test_PDF_url():
+    """ test final PDF urls """
+    overrides = {
+        'repo_name': 'repo',
+        'repo_user': 'user',
+    }
+
+    side_effect = get_yaml_and_override(PATHS['custom_config_file'], overrides)
+    with patch('run.get_yaml') as get_yaml:
+        get_yaml.side_effect = side_effect
+        runner = CliRunner()
+        result = runner.invoke(build_config, ['--env=local'])
+        assert result.exit_code == 0
+
+    # check extra.pdf_url
+    res = get_yaml(PATHS['base_config_folder'] / 'mkdocs-en.yml')
+    site_url = f"https://{overrides['repo_user']}.github.io/{overrides['repo_name']}"
+    assert res['extra']['pdf_url'] == f"{site_url}/pdf/doc-en.pdf"
+
+    res = get_yaml(PATHS['base_config_folder'] / 'mkdocs-es.yml',)
+    assert res['extra']['pdf_url'] == f"{site_url}/es/pdf/doc-es.pdf"
