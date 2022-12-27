@@ -1,4 +1,5 @@
 import os
+from helpers import get_yaml
 
 
 bad_yaml_lines = [
@@ -42,5 +43,17 @@ def side_open_read(path, result=None, replace_path=None):
                 return original_open_fn(replace_path, 'r', **kwargs)
         else:
             return original_open_fn(*args, **kwargs)
+
+    return side_effect
+
+
+def get_yaml_and_override(path, overrides):
+    orig_get_yaml = get_yaml
+
+    def side_effect(*args, **kwargs):
+        base = orig_get_yaml(*args, **kwargs)
+        if args[0] == path:
+            base.update(overrides)
+        return base
 
     return side_effect
