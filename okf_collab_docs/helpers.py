@@ -1,5 +1,7 @@
+from pathlib import Path
 import os
 import shutil
+import yaml
 from jinja2 import Template
 
 
@@ -113,7 +115,36 @@ def update_gh_action_language_files(gh_workflow_file_path, langs):
             line = f'          CONFIG_FILES: {config_files} conf/mkdocs-en.yml\n'
             updated_lines.append(f'          {auto_comment}\n')
         updated_lines.append(line)
-    
+
     f = open(gh_workflow_file_path, 'w')
     f.writelines(updated_lines)
     f.close()
+
+
+def get_yaml(yaml_path):
+    if not os.path.exists(yaml_path):
+        raise Exception(f'YAML file does not exists {yaml_path}')
+    try:
+        yaml_data = yaml.safe_load(open(yaml_path))
+    except yaml.parser.ParserError as e:
+        raise Exception(f'YAML file is not valid YAML {yaml_path}') from e
+    return yaml_data
+
+
+def get_paths(base_folder):
+    base_path = Path(base_folder)
+    base_config_folder = base_path / 'conf'
+    base_page_folder = base_path / 'page'
+    site_folder = base_path / 'site'
+    ret = {
+        'base_folder': base_path,
+        'base_config_folder': base_config_folder,
+        'base_page_folder': base_page_folder,
+        'base_config_file': base_config_folder / 'base.yml',
+        'custom_config_file': base_config_folder / 'custom.yml',
+        'site_folder': site_folder,
+        'user_assets_folder': base_page_folder / 'assets',
+        'site_assets_folder': site_folder / 'assets',
+    }
+
+    return ret
