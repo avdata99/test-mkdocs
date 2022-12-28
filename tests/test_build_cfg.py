@@ -8,7 +8,7 @@ from run import (
 )
 from helpers_test import (
     bad_yaml_content,
-    get_yaml_and_override,
+    build_overrided,
     side_path_exists,
     side_open_read,
 )
@@ -42,9 +42,6 @@ def test_build_cfg_err_no_custom_cfg():
         runner = CliRunner()
         result = runner.invoke(build_config, ['--env=local'])
         assert result.exit_code == 1
-        if result.exception:
-            import traceback
-            traceback.print_exception(*result.exc_info)
         assert 'YAML file does not exist' in result.exception.args[0]
         assert str(PATHS['custom_config_file']) in result.exception.args[0]
 
@@ -58,10 +55,6 @@ def test_build_cfg_err_bad_yaml(path):
         runner = CliRunner()
         result = runner.invoke(build_config, ['--env=local'])
         assert result.exit_code == 1
-        if result.exception:
-            import traceback
-            traceback.print_exception(*result.exc_info)
-
         assert 'YAML file is not valid YAML' in result.exception.args[0]
         assert str(path) in result.exception.args[0]
 
@@ -71,13 +64,7 @@ def test_custom_site_url():
     overrides = {
         'custom_site_url': 'http://custom-site-url.com',
     }
-
-    side_effect = get_yaml_and_override(PATHS['custom_config_file'], overrides)
-    with patch('run.get_yaml') as get_yaml:
-        get_yaml.side_effect = side_effect
-        runner = CliRunner()
-        result = runner.invoke(build_config, ['--env=local'])
-        assert result.exit_code == 0
+    get_yaml = build_overrided(overrides, PATHS)
 
     # check output
     final_config_files = [
@@ -96,12 +83,7 @@ def test_gh_site_url():
         'repo_user': 'user',
     }
 
-    side_effect = get_yaml_and_override(PATHS['custom_config_file'], overrides)
-    with patch('run.get_yaml') as get_yaml:
-        get_yaml.side_effect = side_effect
-        runner = CliRunner()
-        result = runner.invoke(build_config, ['--env=local'])
-        assert result.exit_code == 0
+    get_yaml = build_overrided(overrides, PATHS)
 
     # check output
     final_config_files = [
@@ -120,12 +102,7 @@ def test_PDF_url():
         'repo_user': 'user',
     }
 
-    side_effect = get_yaml_and_override(PATHS['custom_config_file'], overrides)
-    with patch('run.get_yaml') as get_yaml:
-        get_yaml.side_effect = side_effect
-        runner = CliRunner()
-        result = runner.invoke(build_config, ['--env=local'])
-        assert result.exit_code == 0
+    get_yaml = build_overrided(overrides, PATHS)
 
     # check extra.pdf_url
     res = get_yaml(PATHS['base_config_folder'] / 'mkdocs-en.yml')

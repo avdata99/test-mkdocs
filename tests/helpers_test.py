@@ -1,5 +1,8 @@
 import os
+from unittest.mock import patch
+from click.testing import CliRunner
 from helpers import get_yaml
+from run import build_config
 
 
 bad_yaml_lines = [
@@ -57,3 +60,16 @@ def get_yaml_and_override(path, overrides):
         return base
 
     return side_effect
+
+
+def build_overrided(overrides, PATHS):
+    """ Run the build process overriding the custom config file
+        and return a mocked get_yaml function to read results """
+    side_effect = get_yaml_and_override(PATHS['custom_config_file'], overrides)
+    with patch('run.get_yaml') as get_yaml:
+        get_yaml.side_effect = side_effect
+        runner = CliRunner()
+        result = runner.invoke(build_config, ['--env=local'])
+        assert result.exit_code == 0
+
+    return get_yaml
