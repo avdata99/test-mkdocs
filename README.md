@@ -186,6 +186,8 @@ A PDF version for each language is generated automatically and it will be availa
  - English version: `/pdf/doc-en.pdf`
  - Other languages: `/LANG/pdf/doc-LANG.pdf`
 
+The URL for the PDF version is available in the `{{ pdf_url }}` variable in the template files.  
+
 The `/page/pdf/pdf-template-LANG` folder include custom styles,
 cover and back cover templates for each language.  
 [If you know what you're doing](https://github.com/orzih/mkdocs-with-pdf/blob/master/README.md#sample-pdf_event_hookpy-or-pdf_event_hook__init__py),
