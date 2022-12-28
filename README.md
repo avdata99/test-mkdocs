@@ -187,6 +187,7 @@ A PDF version for each language is generated automatically and it will be availa
  - Other languages: `/LANG/pdf/doc-LANG.pdf`
 
 The URL for the PDF version is available in the `{{ pdf_url }}` variable in the template files.  
+A _nav_ link pointing this URL will be added automatically at the end of each language site menu.  
 
 The `/page/pdf/pdf-template-LANG` folder include custom styles,
 cover and back cover templates for each language.  
