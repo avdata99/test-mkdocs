@@ -1,6 +1,6 @@
 # Bienvenido a la prueba de MkDocs
 
-Una version de este documento esta disponible en formato PDF [here](pdf/doc-es.pdf).
+Una version de este documento esta disponible en formato PDF [here]({{ pdf_url }}).  
 
 ## Prueba de variables de entorno
 

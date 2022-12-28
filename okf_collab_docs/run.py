@@ -117,6 +117,17 @@ def build_config(env):
 
         # Update extra values (our context values for all md and html files)
         config['extra'].update(custom_config['custom_extra'])
+
+        # Add a final PDF URL for this language
+        base_url = config['site_url'].rstrip('/')
+        rel_pdf_url = wpdf_plugin['output_path'].lstrip('/')
+        if language == 'en':
+            config['extra']['pdf_url'] = f'{base_url}/{rel_pdf_url}'
+        else:
+            config['extra']['pdf_url'] = f'{base_url}/{language}/{rel_pdf_url}'
+        config['nav'].append(
+            {'PDF': config['extra']['pdf_url']}
+        )
         # Update MD files with extra values
         click.echo(f'Update docs folder: {config["docs_dir"]}')
         fixed_folder = update_md_files(config['docs_dir'], PATHS['base_config_folder'], context=config['extra'])
@@ -137,7 +148,7 @@ def build_config(env):
     'build-local-site',
     short_help='Build static site to run locally'
 )
-def build_site(base_path):
+def build_site():
     """ Build the site """
     PATHS = get_paths(BASE_FOLDER)
     custom_config = yaml.safe_load(open(PATHS['custom_config_file']))
