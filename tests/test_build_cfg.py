@@ -131,6 +131,10 @@ def test_PDF_url():
     res = get_yaml(PATHS['base_config_folder'] / 'mkdocs-en.yml')
     site_url = f"https://{overrides['repo_user']}.github.io/{overrides['repo_name']}"
     assert res['extra']['pdf_url'] == f"{site_url}/pdf/doc-en.pdf"
+    # Check nav menu
+    assert ['PDF'] in [list(val.keys()) for val in res['nav']]
 
     res = get_yaml(PATHS['base_config_folder'] / 'mkdocs-es.yml',)
     assert res['extra']['pdf_url'] == f"{site_url}/es/pdf/doc-es.pdf"
+    # Check nav menu
+    assert ['PDF'] in [list(val.keys()) for val in res['nav']]
