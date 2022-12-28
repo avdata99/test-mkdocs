@@ -6,6 +6,7 @@ import click
 import yaml
 
 from helpers import (
+    add_pdf_url,
     get_lang_setting,
     get_list_setting,
     get_paths,
@@ -13,6 +14,9 @@ from helpers import (
     update_gh_action_language_files,
     update_language_paths,
     update_md_files,
+    validate_index_lang_file,
+    validate_langs,
+    validate_nav_lang_exists,
 )
 
 
@@ -29,11 +33,15 @@ def cli():
     short_help='Build config files for all languages'
 )
 @click.option('--env', '-e', default='local', help='Environment to build for (local or prod)')
-def build_config(env):
+@click.option('--skip-gh-action', is_flag=True, help='Skip updating GitHub action file')
+def build_config(skip_gh_action, env):
     """ Build the config file """
     PATHS = get_paths(BASE_FOLDER)
     base_config = get_yaml(PATHS['base_config_file'])
     custom_config = get_yaml(PATHS['custom_config_file'])
+
+    # Detect languages to validate and prepare final custom mkdocs
+    languages = validate_langs(custom_config)
 
     # Define all language final paths
     update_language_paths(custom_config, env)
@@ -49,13 +57,11 @@ def build_config(env):
     click.echo(f'Copying assets from {src_folder}  to {dst_folder}')
     shutil.copytree(src_folder, dst_folder, dirs_exist_ok=True)
 
-    # Detect languages to prepare final custom mkdocs
-    languages = custom_config['site_name'].keys()
-
     # Update the GitHub action to contain the correct language files
-    gh_workflow_file_path = PATHS['base_folder'] / '.github/workflows/page.yml'
-    click.echo(f'Updating GitHub action file: {gh_workflow_file_path}')
-    update_gh_action_language_files(gh_workflow_file_path, languages)
+    if not skip_gh_action:
+        gh_workflow_file_path = PATHS['base_folder'] / '.github/workflows/page.yml'
+        click.echo(f'Updating GitHub action file: {gh_workflow_file_path}')
+        update_gh_action_language_files(gh_workflow_file_path, languages)
 
     # ====================
     # URLs
@@ -82,15 +88,20 @@ def build_config(env):
         wpdf_plugin = get_list_setting(config['plugins'], 'with-pdf')
         wpdf_plugin['output_path'] = f"pdf/doc-{language}.pdf"
 
+        config['edit_uri'] = base_config['edit_uri'].replace('LANG', language)
+        config['docs_dir'] = f"../page/docs/docs-{language}"
+
         # Override custom settings
         config.update(custom_config)
         config['copyright'] = get_lang_setting(custom_config, language, 'copyright')
         config['site_name'] = get_lang_setting(custom_config, language, 'site_name')
         config['site_description'] = get_lang_setting(custom_config, language, 'site_description')
         config['site_author'] = get_lang_setting(custom_config, language, 'site_author')
+        validate_nav_lang_exists(custom_config['nav'], language)
         config['nav'] = custom_config['nav'][f'nav-{language}']
-        config['edit_uri'] = base_config['edit_uri'].replace('LANG', language)
-        config['docs_dir'] = f"../page/docs/docs-{language}"
+        # Check for the default index.md (required for all languages)
+        validate_index_lang_file(config['nav'], language)
+
         if language == 'en':
             config['site_dir'] = "../site"
         else:
@@ -119,15 +130,8 @@ def build_config(env):
         config['extra'].update(custom_config['custom_extra'])
 
         # Add a final PDF URL for this language
-        base_url = config['site_url'].rstrip('/')
-        rel_pdf_url = wpdf_plugin['output_path'].lstrip('/')
-        if language == 'en':
-            config['extra']['pdf_url'] = f'{base_url}/{rel_pdf_url}'
-        else:
-            config['extra']['pdf_url'] = f'{base_url}/{language}/{rel_pdf_url}'
-        config['nav'].append(
-            {'PDF': config['extra']['pdf_url']}
-        )
+        add_pdf_url(config, wpdf_plugin, language)
+
         # Update MD files with extra values
         click.echo(f'Update docs folder: {config["docs_dir"]}')
         fixed_folder = update_md_files(config['docs_dir'], PATHS['base_config_folder'], context=config['extra'])

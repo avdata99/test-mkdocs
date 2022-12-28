@@ -148,3 +148,44 @@ def get_paths(base_folder):
     }
 
     return ret
+
+
+def validate_nav_lang_exists(nav, lang):
+    if f'nav-{lang}' not in nav:
+        raise Exception(f'No "nav-{lang}" sub-section found in the "nav" section from your custom config file')
+
+
+def validate_index_lang_file(nav, lang):
+    for page in nav:
+        if 'index.md' in page.values():
+            break
+    else:
+        raise Exception(f'No "index.md" found in the "nav-{lang}" sub-section from your custom config file')
+
+
+def add_pdf_url(config, wpdf_plugin, language):
+    """ Add a final PDF URL for this language config"""
+    base_url = config['site_url'].rstrip('/')
+    rel_pdf_url = wpdf_plugin['output_path'].lstrip('/')
+    if language == 'en':
+        config['extra']['pdf_url'] = f'{base_url}/{rel_pdf_url}'
+    else:
+        config['extra']['pdf_url'] = f'{base_url}/{language}/{rel_pdf_url}'
+    config['nav'].append(
+        {'PDF': config['extra']['pdf_url']}
+    )
+
+
+def validate_langs(custom_config):
+    """ Validate that the languages in site_name and alternate are the same """
+
+    languages = list(custom_config['site_name'].keys())
+    langs_in_alternate = [
+        alt['lang']
+        for alt in custom_config['custom_extra']['alternate']
+    ]
+    if languages != langs_in_alternate:
+        raise Exception(
+            f'Languages in site_name and alternate do not match: {languages} != {langs_in_alternate}'
+        )
+    return languages

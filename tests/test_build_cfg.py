@@ -6,6 +6,7 @@ from run import (
     build_config,
     get_paths,
 )
+from helpers import get_yaml
 from helpers_test import (
     bad_yaml_content,
     build_overrided,
@@ -21,7 +22,7 @@ PATHS = get_paths(BASE_FOLDER)
 def test_build_cfg_err_no_cfg(path):
     """ test base_config_file do not exists """
 
-    side_effect = side_path_exists(path)
+    side_effect = side_path_exists(path, False)
     with patch('helpers.os.path.exists') as path_exists:
         path_exists.side_effect = side_effect
 
@@ -35,7 +36,7 @@ def test_build_cfg_err_no_cfg(path):
 def test_build_cfg_err_no_custom_cfg():
     """ test custom_config_file do not exists """
 
-    side_effect = side_path_exists(PATHS['custom_config_file'])
+    side_effect = side_path_exists(PATHS['custom_config_file'], False)
     with patch('helpers.os.path.exists') as path_exists:
         path_exists.side_effect = side_effect
 
@@ -64,7 +65,8 @@ def test_custom_site_url():
     overrides = {
         'custom_site_url': 'http://custom-site-url.com',
     }
-    get_yaml = build_overrided(overrides, PATHS)
+    results = build_overrided(overrides, PATHS)
+    assert results.exit_code == 0
 
     # check output
     final_config_files = [
@@ -83,7 +85,8 @@ def test_gh_site_url():
         'repo_user': 'user',
     }
 
-    get_yaml = build_overrided(overrides, PATHS)
+    results = build_overrided(overrides, PATHS)
+    assert results.exit_code == 0
 
     # check output
     final_config_files = [
@@ -102,7 +105,8 @@ def test_PDF_url():
         'repo_user': 'user',
     }
 
-    get_yaml = build_overrided(overrides, PATHS)
+    results = build_overrided(overrides, PATHS)
+    assert results.exit_code == 0
 
     # check extra.pdf_url
     res = get_yaml(PATHS['base_config_folder'] / 'mkdocs-en.yml')
