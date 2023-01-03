@@ -1,18 +1,9 @@
-from unittest.mock import patch
-from click.testing import CliRunner
-import pytest
 from run import (
     BASE_FOLDER,
-    build_config,
     get_paths,
 )
 from helpers import get_yaml
-from helpers_test import (
-    bad_yaml_content,
-    build_overrided,
-    side_path_exists,
-    side_open_read,
-)
+from helpers_test import build_overrided
 
 
 PATHS = get_paths(BASE_FOLDER)

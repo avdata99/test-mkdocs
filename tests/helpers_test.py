@@ -72,7 +72,8 @@ def build_overrided(
     override_base={},
     override_custom={},
     extra_build_params=['--skip-gh-action'],
-    env='local'):
+    env='local'
+):
     """ Run the build process overriding the custom config file
         and returns the result of the build process """
 
