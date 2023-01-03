@@ -85,7 +85,7 @@ def update_language_paths(config, env='local'):
     for lang in alternate:
         lang_code = '' if lang['lang'] == 'en' else lang['lang']
         if env == 'prod':
-            new_base_path = config['public_url_base_path']
+            new_base_path = config.get('public_url_base_path', '')
             lang['link'] = f'{new_base_path}/{lang_code}'
         else:
             lang['link'] = f'/{lang_code}'
