@@ -1,4 +1,5 @@
 [![Publish docs via GitHub Pages](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/page.yml/badge.svg)](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/page.yml)
+[![Tests](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/tests.yml/badge.svg)](https://github.com/okfn/okfn-collaborative-docs/actions/workflows/tests.yml)
 
 # OKFN Collaborative Documentation tool
 
@@ -36,6 +37,8 @@ pip install -r requirements.txt
 
 Your main configuration file is `/conf/custom.yml`.  
 
+#### Languages
+
 First of all, you need to define your site name and the languages you want to use.  
 Define languages at `custom_extra`->`alternate` and the site name at `site_name`.  
 
@@ -58,20 +61,28 @@ site_name:
 You can add as many languages as you want. 
 All languages will be required for other multilanguage configurations.  
 
-Now define your URL related settings.
+#### URL settings
+
+Now, define your GitHub (required) settings.
 
 ```yaml
-site_url: https://USER.github.io/YOU-REPO-NAME
-# Or https:/your-doc-site.org if you have a custom domain and point it to GitHub Pages
-repo_url: https://github.com/USER/YOU-REPO-NAME
-
-# Usually required for github pages. This is a base path for all URLs
-# Your site will be available at https://USER.github.io/YOU-REPO-NAME so all URLs
-# will be relative to this path
-public_url_base_path: /YOU-REPO-NAME
-# or empty public_url_base_path: 
-# if you have a custom domain
+repo_user: your-github-user-or-org-name
+repo_name: you-new-repo-name
 ```
+_Note:_ `repo_user` and `repo_name` came from your new GitHub repository url: https://github.com/REPO_USER/REPO_NAME
+
+If you plan to use the default GitHub domain, you are done with this settings.  
+The site will be available at https://USER.github.io/YOU-REPO-NAME.  
+Conversely, if you plan to use a custom domain, you'll need something like this:
+
+```yaml
+# Only for custom domains you can use:
+custom_site_url: https://your-site.org
+# public_url_base_path: /some-base-path-folder (only if required)
+```
+_Note:_ You'll need a CNAME record pointing to `USER.github.io`
+
+#### Other settings
 
 The `site_description`, `copyright` and `site_author` are self-explanatory.  
 
@@ -106,6 +117,7 @@ You need to add a sub-section for each language (`nav-en`, `nav-es`, etc).
 
 Inside the `page/docs` folder you need to create (if not exists) a folder
 for each language (`docs-en`, `docs-es`, etc).  
+For all languages, an `index.md` file is required.  
 
 Inside each language folder you need to create (if not exists) the same
 files described in the `nav-LANG` setting.  
@@ -128,7 +140,7 @@ For example `<img src="{{ assets_folder }}/img/cordoba-rio.jpg"/>` or
 Prepare your internal custom settings for each language and prepare the environment
 
 ```bash
-python3 code/okf-collab.py build-config
+python3 okf_collab_docs/run.py build-config
 ```
 
 For a list of common errors building your site, see [here](docs/build-errors.md).  
@@ -155,25 +167,28 @@ You can also test you site locally and skip waiting for each GitHub action to fi
 You can do this by builing the site locally and serving it with a local server.  
 
 ```
-python3 code/okf-collab.py build-local-site
+python3 okf_collab_docs/run.py build-local-site
 ```
 
 ... and serve the site locally
 
 ```
-python3 code/okf-collab.py serve
+python3 okf_collab_docs/run.py serve
 ```
 
 You'll see `serving at http://localhost:8033` and your local site is now redy to test with
 all the languages you defined.  
 **Note**: If you have a `Port in use` error, you can call
-`python3 code/okf-collab.py serve -p 8034` to use a different port.  
+`python3 okf_collab_docs/run.py serve -p 8034` to use a different port.  
 
 ### PDF version
 
 A PDF version for each language is generated automatically and it will be available at:
  - English version: `/pdf/doc-en.pdf`
  - Other languages: `/LANG/pdf/doc-LANG.pdf`
+
+The URL for the PDF version is available in the `{{ pdf_url }}` variable in the template files.  
+A _nav_ link pointing this URL will be added automatically at the end of each language site menu.  
 
 The `/page/pdf/pdf-template-LANG` folder include custom styles,
 cover and back cover templates for each language.  

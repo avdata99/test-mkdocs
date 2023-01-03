@@ -1,5 +1,7 @@
+from pathlib import Path
 import os
 import shutil
+import yaml
 from jinja2 import Template
 
 
@@ -113,7 +115,77 @@ def update_gh_action_language_files(gh_workflow_file_path, langs):
             line = f'          CONFIG_FILES: {config_files} conf/mkdocs-en.yml\n'
             updated_lines.append(f'          {auto_comment}\n')
         updated_lines.append(line)
-    
+
     f = open(gh_workflow_file_path, 'w')
     f.writelines(updated_lines)
     f.close()
+
+
+def get_yaml(yaml_path):
+    if not os.path.exists(yaml_path):
+        raise Exception(f'YAML file does not exists {yaml_path}')
+    try:
+        yaml_data = yaml.safe_load(open(yaml_path))
+    except yaml.parser.ParserError as e:
+        raise Exception(f'YAML file is not valid YAML {yaml_path}') from e
+    return yaml_data
+
+
+def get_paths(base_folder):
+    base_path = Path(base_folder)
+    base_config_folder = base_path / 'conf'
+    base_page_folder = base_path / 'page'
+    site_folder = base_path / 'site'
+    ret = {
+        'base_folder': base_path,
+        'base_config_folder': base_config_folder,
+        'base_page_folder': base_page_folder,
+        'base_config_file': base_config_folder / 'base.yml',
+        'custom_config_file': base_config_folder / 'custom.yml',
+        'site_folder': site_folder,
+        'user_assets_folder': base_page_folder / 'assets',
+        'site_assets_folder': site_folder / 'assets',
+    }
+
+    return ret
+
+
+def validate_nav_lang_exists(nav, lang):
+    if f'nav-{lang}' not in nav:
+        raise Exception(f'No "nav-{lang}" sub-section found in the "nav" section from your custom config file')
+
+
+def validate_index_lang_file(nav, lang):
+    for page in nav:
+        if 'index.md' in page.values():
+            break
+    else:
+        raise Exception(f'No "index.md" found in the "nav-{lang}" sub-section from your custom config file')
+
+
+def add_pdf_url(config, wpdf_plugin, language):
+    """ Add a final PDF URL for this language config"""
+    base_url = config['site_url'].rstrip('/')
+    rel_pdf_url = wpdf_plugin['output_path'].lstrip('/')
+    if language == 'en':
+        config['extra']['pdf_url'] = f'{base_url}/{rel_pdf_url}'
+    else:
+        config['extra']['pdf_url'] = f'{base_url}/{language}/{rel_pdf_url}'
+    config['nav'].append(
+        {'PDF': config['extra']['pdf_url']}
+    )
+
+
+def validate_langs(custom_config):
+    """ Validate that the languages in site_name and alternate are the same """
+
+    languages = list(custom_config['site_name'].keys())
+    langs_in_alternate = [
+        alt['lang']
+        for alt in custom_config['custom_extra']['alternate']
+    ]
+    if languages != langs_in_alternate:
+        raise Exception(
+            f'Languages in site_name and alternate do not match: {languages} != {langs_in_alternate}'
+        )
+    return languages

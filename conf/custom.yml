@@ -5,11 +5,16 @@ site_name:
     en: My site name
     es: Mi sitio
 
-site_url: https://okfn.github.io/okfn-collaborative-docs/
-repo_url: https://github.com/okfn/okfn-collaborative-docs
+# custom_site_url is only required for custom URL (like https://your_site.org)
+# If you plan to use GitHub domain (like https://USER.github.io/YOU-REPO-NAME), leave it commented
+# custom_site_url: https://your-custom-domain.org
 
-# Usually required for github pages. This is a base path for all URLs
-public_url_base_path: /okfn-collaborative-docs
+# repo_user and repo_name came from the GitHub repository url: https://github.com/REPO_USER/REPO_NAME
+repo_user: okfn
+repo_name: okfn-collaborative-docs
+
+# Only if you need it for custom path at your domain
+# public_url_base_path: /some-folder
 
 site_description: 
   en: |
