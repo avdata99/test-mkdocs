@@ -2,6 +2,12 @@
 
 ## Changes
 
+### 0.2.1
+2023-01-03
+ - Tests added
+ - Minor fixes
+ - Notes
+
 ### 0.2.0
 2023-01-03
  - Tests added
