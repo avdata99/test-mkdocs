@@ -3,7 +3,8 @@
 
 site_dir: ../site
 use_directory_urls: false
-docs_dir: ../page/docs/docs-en
+# docs_dir is the base folder for all lang specific docs folder
+docs_dir: ../page/docs
 edit_uri: edit/main/page/docs/docs-LANG
 
 # theme: readthedocs

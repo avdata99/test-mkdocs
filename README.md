@@ -117,6 +117,7 @@ You need to add a sub-section for each language (`nav-en`, `nav-es`, etc).
 
 Inside the `page/docs` folder you need to create (if not exists) a folder
 for each language (`docs-en`, `docs-es`, etc).  
+For all languages, an `index.md` file is required.  
 
 Inside each language folder you need to create (if not exists) the same
 files described in the `nav-LANG` setting.  

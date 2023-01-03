@@ -81,6 +81,7 @@ def build_config(skip_gh_action, env):
     for language in languages:
         # get the base setting
         config = base_config.copy()
+        base_docs_dir = config['docs_dir']
 
         config['theme']['language'] = language
         search_plugin = get_list_setting(config['plugins'], 'search')
@@ -89,7 +90,7 @@ def build_config(skip_gh_action, env):
         wpdf_plugin['output_path'] = f"pdf/doc-{language}.pdf"
 
         config['edit_uri'] = base_config['edit_uri'].replace('LANG', language)
-        config['docs_dir'] = f"../page/docs/docs-{language}"
+        config['docs_dir'] = f"{base_docs_dir}/docs-{language}"
 
         # Override custom settings
         config.update(custom_config)
