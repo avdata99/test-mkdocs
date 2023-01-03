@@ -2,6 +2,12 @@
 
 ## Changes
 
+### 0.2.1
+2023-01-03 [#24](https://github.com/okfn/okfn-collaborative-docs/pull/24)
+ - Tests added
+ - Minor fixes
+ - Notes
+
 ### 0.2.0
 2023-01-03
  - Tests added

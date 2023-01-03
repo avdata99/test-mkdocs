@@ -67,7 +67,13 @@ def get_yaml_and_override(overrides):
     return side_effect
 
 
-def build_overrided(PATHS, override_base={}, override_custom={}, extra_build_params=['--skip-gh-action']):
+def build_overrided(
+    PATHS,
+    override_base={},
+    override_custom={},
+    extra_build_params=['--skip-gh-action'],
+    env='local'
+):
     """ Run the build process overriding the custom config file
         and returns the result of the build process """
 
@@ -80,7 +86,7 @@ def build_overrided(PATHS, override_base={}, override_custom={}, extra_build_par
     with patch('run.get_yaml') as get_yaml:
         get_yaml.side_effect = side_effect
         runner = CliRunner()
-        result = runner.invoke(build_config, ['--env=local'] + extra_build_params)
+        result = runner.invoke(build_config, [f'--env={env}'] + extra_build_params)
         if result.exception:
             import traceback
             traceback.print_exception(*result.exc_info)
