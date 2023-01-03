@@ -135,6 +135,11 @@ at `{{ assets_folder }}` in your template/markdown files (they are several examp
 For example `<img src="{{ assets_folder }}/img/cordoba-rio.jpg"/>` or
 `![cba river]({{ assets_folder }}/img/cordoba-rio.jpg)`.  
 
+**Note**: If you plan to use resource file that contains spaces,
+you'll need to use angle brackets.  
+For example`![some pdf](<{{ assets_folder }}/img/spaced file name.pdf"/>)`.  
+(note the angle brackets inside the URL).  
+
 ### Prepare your site
 
 Prepare your internal custom settings for each language and prepare the environment
