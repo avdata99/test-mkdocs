@@ -65,7 +65,7 @@ def test_custom_site_url():
     overrides = {
         'custom_site_url': 'http://custom-site-url.com',
     }
-    results = build_overrided(overrides, PATHS)
+    results = build_overrided(PATHS, override_custom=overrides)
     assert results.exit_code == 0
 
     # check output
@@ -85,7 +85,7 @@ def test_gh_site_url():
         'repo_user': 'user',
     }
 
-    results = build_overrided(overrides, PATHS)
+    results = build_overrided(PATHS, override_custom=overrides)
     assert results.exit_code == 0
 
     # check output
@@ -105,7 +105,7 @@ def test_PDF_url():
         'repo_user': 'user',
     }
 
-    results = build_overrided(overrides, PATHS)
+    results = build_overrided(PATHS, override_custom=overrides)
     assert results.exit_code == 0
 
     # check extra.pdf_url
