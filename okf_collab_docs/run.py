@@ -206,7 +206,7 @@ def serve(port):
 def update():
     """ Get changes from base template """
 
-    #Local repo on your computer
+    # Local repo on your computer
     repo = git.Repo('.')
     # Create a remote to template upstream repo (if not exists)
     try:
@@ -224,8 +224,8 @@ def update():
 )
 def init_project():
     """ Initialize basic files and settings """
-    
-    #Local repo on your computer
+
+    # Local repo on your computer
     repo = git.Repo('.')
     remote = repo.remote()
     remote_url = remote.url
@@ -241,7 +241,7 @@ def init_project():
     data = data.replace('repo_name: okfn-collaborative-docs', f'repo_name: {repo_name}')
     with open(PATHS['custom_config_file'], 'w') as f:
         f.write(data)
-    
+
     # Move the original README.md to README-orig.md
     # Ensure to do this only one time
     readme_orig = PATHS['base_folder'] / 'README-orig.md'
