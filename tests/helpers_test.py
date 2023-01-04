@@ -1,3 +1,4 @@
+import copy
 import os
 from unittest.mock import patch
 from click.testing import CliRunner
@@ -91,3 +92,85 @@ def build_overrided(
             import traceback
             traceback.print_exception(*result.exc_info)
         return result
+
+
+def get_cfg_chuks():
+
+    custom_extra_en_es = {
+        'custom_extra': {
+            'alternate': [
+                {'name': 'English', 'lang': 'en'},
+                {'name': 'Español', 'lang': 'es'},
+            ],
+            'test_var': '',
+            'test_complex_obj': {'test_var2': '', 'test_var3': ''},
+        }
+    }
+    custom_extra_en_es_pt = copy.deepcopy(custom_extra_en_es)
+    custom_extra_en_es_pt['custom_extra']['alternate'].append(
+        {'name': 'Português', 'lang': 'pt'}
+    )
+
+    site_name_en_es = {
+        'site_name': {
+            'en': 'Collab test',
+            'es': 'Mi test',
+        }
+    }
+    site_name_en_es_pt = copy.deepcopy(site_name_en_es)
+    site_name_en_es_pt['site_name']['pt'] = 'Meu teste'
+
+    copyright_en_es = {
+        'copyright': {
+            'en': 'Copyrigth',
+            'es': 'Derechos de autor',
+        }
+    }
+    copyright_en_es_pt = copy.deepcopy(copyright_en_es)
+    copyright_en_es_pt['copyright']['pt'] = 'Copyrigth'
+
+    site_description_en_es = {
+        'site_description': {
+            'en': 'Descr',
+            'es': 'Descr',
+        }
+    }
+    site_description_en_es_pt = copy.deepcopy(site_description_en_es)
+    site_description_en_es_pt['site_description']['pt'] = 'Descr'
+
+    site_author_en_es = {
+        'site_author': {
+            'en': 'Author',
+            'es': 'Author',
+        }
+    }
+    site_author_en_es_pt = copy.deepcopy(site_author_en_es)
+    site_author_en_es_pt['site_author']['pt'] = 'Author'
+
+    nav_en_es = {
+        'nav': {
+            'nav-en': [{'Home': 'index.md'}],
+            'nav-es': [{'Inicio': 'index.md'}],
+        }
+    }
+    nav_en_es_pt_no_index = copy.deepcopy(nav_en_es)
+    nav_en_es_pt_no_index['nav']['nav-pt'] = [{'Início': 'bad-index.md'}]
+
+    nav_en_es_pt = copy.deepcopy(nav_en_es)
+    nav_en_es_pt['nav']['nav-pt'] = [{'Início': 'index.md'}]
+    
+    return {
+        'custom_extra_en_es': custom_extra_en_es,
+        'custom_extra_en_es_pt': custom_extra_en_es_pt,
+        'site_name_en_es': site_name_en_es,
+        'site_name_en_es_pt': site_name_en_es_pt,
+        'copyright_en_es': copyright_en_es,
+        'copyright_en_es_pt': copyright_en_es_pt,
+        'site_description_en_es': site_description_en_es,
+        'site_description_en_es_pt': site_description_en_es_pt,
+        'site_author_en_es': site_author_en_es,
+        'site_author_en_es_pt': site_author_en_es_pt,
+        'nav_en_es': nav_en_es,
+        'nav_en_es_pt': nav_en_es_pt,
+        'nav_en_es_pt_no_index': nav_en_es_pt_no_index,
+    }
