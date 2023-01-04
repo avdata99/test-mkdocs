@@ -65,6 +65,15 @@ All languages will be required for other multilanguage configurations.
 
 Now, define your GitHub (required) settings.
 
+You can automatically update your repository settings with:
+
+```bash
+python3 okf_collab_docs/run.py init
+```
+(this command will also initialize your README.md file for you)
+
+Or manually change these settings:
+
 ```yaml
 repo_user: your-github-user-or-org-name
 repo_name: you-new-repo-name
@@ -205,3 +214,4 @@ you can modify the `/pdf_event_hook.py` file.
 More info about this project:
 
  - General notes: [docs/general-notes.md](docs/general-notes.md)
+ - [Update latest changes from original template](docs/re-sync.md)
