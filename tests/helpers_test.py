@@ -158,7 +158,7 @@ def get_cfg_chuks():
 
     nav_en_es_pt = copy.deepcopy(nav_en_es)
     nav_en_es_pt['nav']['nav-pt'] = [{'Início': 'index.md'}]
-    
+
     return {
         'custom_extra_en_es': custom_extra_en_es,
         'custom_extra_en_es_pt': custom_extra_en_es_pt,
