@@ -3,6 +3,9 @@
 ## Changes
 
 ### Next release
+ - Add news here
+
+### 0.2.2
  - Fix tests [#26](https://github.com/okfn/okfn-collaborative-docs/pull/26)
  - Some help to resync with upstream [#27](https://github.com/okfn/okfn-collaborative-docs/pull/27)
  - Init and rebase commands [#28](https://github.com/okfn/okfn-collaborative-docs/pull/28)

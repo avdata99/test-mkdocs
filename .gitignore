@@ -136,3 +136,5 @@ page/docs/docs*/assets/
 # Hide fixed folder for MD files as templates
 **/fixed-*/
 /test-folder/
+
+.vscode
