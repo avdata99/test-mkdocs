@@ -3,7 +3,9 @@ import shutil
 from mkdocs.commands import build
 from mkdocs import config as mkdocs_config
 import click
+import git
 import yaml
+
 
 from helpers import (
     add_pdf_url,
@@ -195,6 +197,67 @@ def serve(port):
     with socketserver.TCPServer(("", port), Handler) as httpd:
         print(f"serving at http://localhost:{port}")
         httpd.serve_forever()
+
+
+@cli.command(
+    'update-from-template',
+    short_help='Get latest changes from upstream template'
+)
+def update():
+    """ Get changes from base template """
+
+    # Local repo on your computer
+    repo = git.Repo('.')
+    # Create a remote to template upstream repo (if not exists)
+    try:
+        upstream = repo.create_remote('upstream', 'git@github.com:okfn/okfn-collaborative-docs.git')
+    except git.exc.GitCommandError:
+        upstream = repo.remote('upstream')
+    upstream.fetch()
+    cmd = repo.git
+    cmd.rebase('-Xours', 'upstream/main')
+
+
+@cli.command(
+    'init',
+    short_help='Initialize this project'
+)
+def init_project():
+    """ Initialize basic files and settings """
+
+    # Local repo on your computer
+    repo = git.Repo('.')
+    remote = repo.remote()
+    remote_url = remote.url
+    repo_user = remote_url.split('/')[-2].split(':')[1]
+    repo_name = remote_url.split('/')[-1].replace('.git', '')
+
+    click.echo(f'Initializing project for {repo_user}/{repo_name}')
+
+    PATHS = get_paths(BASE_FOLDER)
+    with open(PATHS['custom_config_file'], 'r') as f:
+        data = f.read()
+    data = data.replace('repo_user: okfn', f'repo_user: {repo_user}')
+    data = data.replace('repo_name: okfn-collaborative-docs', f'repo_name: {repo_name}')
+    with open(PATHS['custom_config_file'], 'w') as f:
+        f.write(data)
+
+    # Move the original README.md to README-orig.md
+    # Ensure to do this only one time
+    readme_orig = PATHS['base_folder'] / 'README-orig.md'
+    if readme_orig.exists():
+        click.echo('README-orig.md already exists. Skipping new README file')
+    else:
+        readme = PATHS['base_folder'] / 'README.md'
+        readme.rename(readme_orig)
+
+        # Create new README.md with the link for our docs
+        # TODO use jinja and a template file
+        with open(readme, 'w') as f:
+            f.write(f'# {repo_name}\n\n')
+            f.write(f'You can see this documentation at https://{repo_user}.github.io/{repo_name}/  \n\n')
+            f.write('Feel free to contribute to this project or create issues\n')
+            f.write(f'at https://github.com/{repo_user}/{repo_name}/issues  \n')
 
 
 if __name__ == '__main__':
