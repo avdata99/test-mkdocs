@@ -8,6 +8,11 @@ If you want to update your documentation to latest version, you can run
 ```bash
 python3 okf_collab_docs/run.py update-from-template
 ```
+If you accept changes, you'll need to run:
+
+```bash
+git push -f origin main
+```
 
 You can also do it manually by running
 
